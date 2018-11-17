@@ -7,9 +7,11 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
 import { Routes, RouterModule } from '@angular/router';
+import { AboutComponent } from './about/about.component';
 
 const appRoutes: Routes = [
-  { path: 'routePath', component: HomeComponent }
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent }
 ];
 
 
@@ -17,7 +19,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
