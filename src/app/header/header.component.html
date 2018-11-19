@@ -1,22 +1,49 @@
-<ul class="nav nav-pills bg-primary text-light font-weight-bold p-3">
+<div class="nav">
 
-  <li class="nav-item mr-4">
-    <a routerLink="" class="btn text-light">
-      <img src="https://www.shareicon.net/data/128x128/2015/10/30/664238_man_512x512.png" alt="" height="50px" width="60px">
-      ALGORITBUILD</a>
-  </li>
+  <ul class="nav nav-pills  text-light font-weight-bold  ">
 
-  <li class="nav-item mr-2">
-    <a class="btn btn-outline-light" routerLink="about">Sobre nosotros</a>
-  </li>
-  <li class="nav-item mr-2">
-    <a class="btn btn-outline-light" routerLink="/home">Informate</a>
-  </li>
-  <li class="nav-item mr-2">
-    <a class="btn btn-outline-light" routerLink="/home">Encuesta</a>
-  </li>
+    <li class="nav-item mr-4">
+      <a routerLink="" class="btn text-light">
+        <fa-icon icon="brain"></fa-icon>
+        ALGORITBUILD
+      </a>
+    </li>
 
-  <li class="nav-item mr-2">
-    <a class="btn btn-outline-light" routerLink="/home">Juegos</a>
-  </li>
-</ul>
+    <li class="nav-item mr-2">
+      <a class="btn btn-outline-light" routerLink="about">Sobre nosotros
+        <fa-icon icon="users"></fa-icon>
+      </a>
+    </li>
+    <li class="nav-item mr-2">
+
+      <a class="btn btn-outline-light" routerLink="/home">Informate
+        <fa-icon icon="info-circle"></fa-icon>
+      </a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="btn btn-outline-light" routerLink="/home">Encuesta
+        <fa-icon icon="poll"></fa-icon>
+      </a>
+    </li>
+
+    <li class="nav-item ">
+      <a class="btn btn-outline-light" routerLink="/home">Juegos
+        <fa-icon icon="gamepad"></fa-icon>
+      </a>
+    </li>
+
+
+
+  </ul>
+  <div class="offset-4">
+    <a class="btn btn-outline-light mr-2" routerLink="/login">Login
+      <fa-icon icon="sign-in-alt">
+      </fa-icon>
+    </a>
+
+    <a class="btn btn-outline-light " routerLink="/logout">Logout
+      <fa-icon icon="sign-out-alt">
+      </fa-icon>
+    </a>
+  </div>
+</div>
