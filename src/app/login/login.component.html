@@ -1,0 +1,31 @@
+<div class="col-6 offset-3 mt-4  ">
+    <div class="card shadow-lg  mb-4 bg-white">
+        <div class="card-header text-center bg-primary">
+            <h2>LOGIN</h2>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>USUARIO</label>
+                <input type="text" class="form-control" [(ngModel)]="user.name" placeholder="Ingrese su nombre usuario">
+            </div>
+            <div class="form-group">
+                <label>CONTRASEÑA</label>
+                <input type="password" class="form-control" [(ngModel)]="user.password" placeholder="Ingrese su contraseña">
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col col-sm-12 col-md-6 col-lg-6 text-center">
+                    <button class="btn btn-primary" (click)="saveUser()">Iniciar sesión</button>
+                </div>
+                <div class="col col-sm-12 col-md-6 col-lg-6 text-center">
+
+                    <small>¿Aun no tienes cuenta?</small><br>
+                    <button class="btn btn-link" routerLink="/signup">Regístrate ahora</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

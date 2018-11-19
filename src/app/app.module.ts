@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-//libreria de iconos
+import { FormsModule } from '@angular/forms';
 
+//libreria de iconos///////////////////////////////////////
 /*
 *comando para instalar libreria
 * npm install @fortawesome/fontawesome-svg-core --save\nnpm install @fortawesome/free-solid-svg-icons --save\nnpm install @fortawesome/angular-fontawesome --save
@@ -21,10 +22,12 @@ import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent }
+  { path: 'about', component: AboutComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 
@@ -34,12 +37,14 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     AboutComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule, //import  FontAwesomeModule paquete de iconos
     RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
