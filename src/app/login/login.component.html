@@ -6,23 +6,23 @@
         <div class="card-body">
             <div class="form-group">
                 <label>USUARIO</label>
-                <input type="text" class="form-control" [(ngModel)]="user.name" placeholder="Ingrese su nombre usuario">
+                <input type="text" class="form-control" [(ngModel)]="login.email" placeholder="Ingrese su nombre usuario">
             </div>
             <div class="form-group">
                 <label>CONTRASEÑA</label>
-                <input type="password" class="form-control" [(ngModel)]="user.password" placeholder="Ingrese su contraseña">
+                <input type="password" class="form-control" [(ngModel)]="login.password" placeholder="Ingrese su contraseña">
             </div>
 
         </div>
         <div class="card-footer">
             <div class="row">
                 <div class="col col-sm-12 col-md-6 col-lg-6 text-center">
-                    <button class="btn btn-primary" (click)="saveUser()">Iniciar sesión</button>
+                    <button class="btn btn-primary" (click)="signIn()">Iniciar sesión</button>
                 </div>
                 <div class="col col-sm-12 col-md-6 col-lg-6 text-center">
 
                     <small>¿Aun no tienes cuenta?</small><br>
-                    <button class="btn btn-link" routerLink="/signup">Regístrate ahora</button>
+                    <button class="btn btn-link" routerLink="/register">Regístrate ahora</button>
 
                 </div>
             </div>

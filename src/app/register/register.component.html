@@ -1,0 +1,23 @@
+<div class="col-6 offset-3 mt-4  ">
+  <div class="card shadow-lg  mb-4 bg-white">
+      <div class="card-header text-center bg-primary">
+          <h2>REGISTRAR USUARIO</h2>
+      </div>
+      <div class="card-body">
+          <div class="form-group">
+              <label>CORREO LELECTRONICO</label>
+              <input type="email" class="form-control" [(ngModel)]="login.email" placeholder="Ingrese su correo">
+          </div>
+          <div class="form-group">
+              <label>CONTRASEÑA</label>
+              <input type="password" class="form-control" [(ngModel)]="login.password" placeholder="Ingrese su contraseña">
+          </div>
+
+      </div>
+      <div class="card-footer">
+              <div class="col col-sm-12 col-md-6 col-lg-6 offset-3 text-center">
+                  <button class="btn btn-primary" (click)="register()">Registrar usuario</button>
+              
+      </div>
+  </div>
+</div>

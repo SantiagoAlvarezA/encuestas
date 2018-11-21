@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class RegisterComponent implements OnInit {
+  
   login: any = {};
+  
   isAuthenticated: boolean = true;
+
   constructor(private authentication: LoginService, private router: Router) {
     authentication.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
@@ -22,15 +23,12 @@ export class LoginComponent implements OnInit {
       }
     }, (error) => {
       this.isAuthenticated = false;
-    });
-  }
+    }); }
 
   ngOnInit() {
   }
-  public signIn() {
-    this.authentication.signIn(this.login.email, this.login.password);
+
+  public register() {
+    this.authentication.register(this.login.email, this.login.password);
   }
-
-
-
 }

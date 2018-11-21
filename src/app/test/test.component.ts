@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import { LoginService } from './services/login.service';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-test',
+  templateUrl: './test.component.html',
+  styleUrls: ['./test.component.css']
 })
-export class AppComponent {
-  title = 'Encuestas';
+export class TestComponent implements OnInit {
   isAuthenticated: boolean = false;
   emailUser: any = null;
 
@@ -27,6 +26,8 @@ export class AppComponent {
       this.router.navigate(['/login']);
     });
   }
+
+  ngOnInit() {
+  }
+
 }
-
-
