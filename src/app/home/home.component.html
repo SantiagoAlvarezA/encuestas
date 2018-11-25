@@ -5,14 +5,17 @@
         <div class="ml-auto mt-5 p-2 col-3 rounded bg-primary bd-highlight align-self-start text-center" *ngIf="!isAuthenticated">
 
             <h4>Registrarte como</h4>
-            <button class="p-1 btn btn-lg col-12" routerLink="/register/teacher">
+            <button class="p-1 btn btn-lg col-12 " routerLink="/register/teacher">
+
                 Docente
+                <fa-icon icon="chalkboard-teacher" class="ml-3"></fa-icon>
             </button>
             <button class="mt-2 p-1 btn btn-lg col-12" routerLink="/register/student">
                 Estudiante
+                <fa-icon icon="user-graduate" class="ml-3"></fa-icon>
             </button>
-
         </div>
+
 
 
 

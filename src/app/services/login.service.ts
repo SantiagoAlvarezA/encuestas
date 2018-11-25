@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
+
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase) {
     this.isAuthenticated();
   }
-  
+
   public isAuthenticated() {
     return this.angularFireAuth.authState;
   }
@@ -35,10 +37,14 @@ export class LoginService {
   }
 
   // Metodo para registrar usuario
-  public register = (email, password) => {
+  public register = (email, password, user ) => {
+
     this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((response) => {
-        console.log('usuario registrado con exito');
+        user.id = response.user.uid;
+        this.db.database.ref('users/' + user.id ).set(user);
+
+
         this.router.navigate(['/']);
       })
       .catch((error) => {
