@@ -7,7 +7,12 @@ import { FormsModule } from '@angular/forms';
 /*
 *comando para instalar libreria
 * npm install @fortawesome/fontawesome-svg-core --save\nnpm install @fortawesome/free-solid-svg-icons --save\nnpm install @fortawesome/angular-fontawesome --save
+*
+*libreria de ng-boostrap
+*npm install --save @ng-bootstrap/ng-bootstrap
+*
 */
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -41,7 +46,7 @@ const appRoutes: Routes = [
   { path: 'info', component: InformationComponent },
   { path: 'test', component: TestComponent },
   { path: 'games', component: GamesComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register/:rol', component: RegisterComponent },
 ];
 
 
@@ -64,6 +69,7 @@ const appRoutes: Routes = [
     FontAwesomeModule, //import  FontAwesomeModule paquete de iconos
     RouterModule.forRoot(appRoutes),
     FormsModule,
+
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,

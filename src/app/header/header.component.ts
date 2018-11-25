@@ -8,14 +8,27 @@ import { LoginService } from '../services/login.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authentication: LoginService) { }
+
+  isAuthenticated: boolean = false;
+  constructor(private authentication: LoginService) {
+
+    authentication.isAuthenticated().subscribe((result) => {
+      if (result && result.uid) {
+        this.isAuthenticated = true;
+      } else {
+        this.isAuthenticated = false;
+      }
+    }, (error) => {
+      this.isAuthenticated = false;
+    });
+  }
 
   ngOnInit() {
   }
 
-  
+
   public signOut() {
     this.authentication.signOut();
-}
+  }
 
 }

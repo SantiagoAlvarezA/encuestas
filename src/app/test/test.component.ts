@@ -16,14 +16,14 @@ export class TestComponent implements OnInit {
       if (result && result.uid) {
         this.isAuthenticated = true;
         this.emailUser = this.login.getUser().currentUser.email;
-        this.router.navigate(['']);
+        this.router.navigate(['/test']);
       } else {
         this.isAuthenticated = false;
-        this.router.navigate(['/login']);
+        this.router.navigate(['']);
       }
     }, (error) => {
       this.isAuthenticated = false;
-      this.router.navigate(['/login']);
+      this.router.navigate(['']);
     });
   }
 

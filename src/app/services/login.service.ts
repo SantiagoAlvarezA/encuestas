@@ -19,12 +19,12 @@ export class LoginService {
   public signIn = (email, password) => {
     this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
       .then((response) => {
-        alert('usuario autenticado con exito');
+        console.log('usuario autenticado con exito');
         this.router.navigate(['/']);
       })
       .catch((error) => {
         console.log(error);
-        alert('El usuario no esta registrado.');
+        console.log('El usuario no esta registrado.');
       });
   }
 
@@ -38,7 +38,7 @@ export class LoginService {
   public register = (email, password) => {
     this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((response) => {
-        alert('usuario registrado con exito');
+        console.log('usuario registrado con exito');
         this.router.navigate(['/']);
       })
       .catch((error) => {

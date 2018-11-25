@@ -37,12 +37,12 @@
 
 
   <div class="col-auto">
-    <a class="btn btn-outline-light mr-2" routerLink="/login">Iniciar sesión
+    <a class="btn btn-outline-light mr-2" routerLink="/login" *ngIf="!isAuthenticated">Iniciar sesión
       <fa-icon icon="sign-in-alt">
       </fa-icon>
     </a>
 
-    <a class="btn btn-outline-light " (click)="signOut()">Cerrar sesión
+    <a class="btn btn-outline-light " (click)="signOut()" *ngIf="isAuthenticated">Cerrar sesión
       <fa-icon icon="sign-out-alt">
       </fa-icon>
     </a>
