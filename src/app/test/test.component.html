@@ -1,3 +1,15 @@
-<p>
-  test works!
-</p>
+<div class="col-8 offset-2 shadow p-3 mb-5 bg-white">
+
+  <mat-form-field class="example-full-width col-12">
+    <input matInput placeholder="Título de la encuesta" [(ngModel)]="test.title">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width col-12">
+    <textarea matInput placeholder="Descripción y objetivo de la encuesta" [(ngModel)]="test.description"></textarea>
+  </mat-form-field>
+
+  <div class="d-flex align-items-end flex-column">
+    <fa-icon icon="plus" (click) = "console()"></fa-icon>
+  </div>
+
+</div>

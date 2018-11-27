@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class TestComponent implements OnInit {
   isAuthenticated: boolean = false;
   emailUser: any = null;
+  test:any = {};
 
   constructor(private login: LoginService, private router: Router) {
     login.isAuthenticated().subscribe((result) => {
@@ -30,4 +31,7 @@ export class TestComponent implements OnInit {
   ngOnInit() {
   }
 
+  console(){
+    console.log(this.test);
+  }
 }

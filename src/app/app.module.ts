@@ -39,6 +39,12 @@ import { TestComponent } from './test/test.component';
 import { GamesComponent } from './games/games.component';
 import { RegisterComponent } from './register/register.component';
 
+
+//angular material
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AngularMaterial } from './app.angular-material';
+
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -73,7 +79,12 @@ const appRoutes: Routes = [
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+
+
+    //angular material
+    AngularMaterial,
+    BrowserAnimationsModule
     
   ],
   providers: [],
