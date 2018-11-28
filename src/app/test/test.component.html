@@ -1,3 +1,24 @@
+<div class=" col-12 p-2  table-primary" *ngIf="isAuthenticated">
+
+  <div class="row pr-3 pl-3">
+
+    <div class="col-sm-3 p-1" *ngFor="let test of tests | async">
+      <div class="card ">
+        <div class="card-body">
+          <h5 class="card-title">{{test.title}}</h5>
+          <p class="card-text">{{test.description}}</p>
+          <div class="float-right">
+            <fa-icon class="mr-2" icon="pen" (click)="getTest(test.id)"></fa-icon>
+            <fa-icon class="ml-2" icon="trash-alt" (click)="deleteTest(test.id)"></fa-icon>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <hr> -->
 <div class="col-8 offset-2 shadow p-3 mb-5 bg-white">
 
   <mat-form-field class="example-full-width col-12">
@@ -9,7 +30,8 @@
   </mat-form-field>
 
   <div class="d-flex align-items-end flex-column">
-    <fa-icon icon="plus" (click) = "console()"></fa-icon>
+    <fa-icon icon="{{icon}}" (click)="setAction()"></fa-icon>
   </div>
+
 
 </div>

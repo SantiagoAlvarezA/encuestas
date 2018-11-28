@@ -44,6 +44,8 @@ import { RegisterComponent } from './register/register.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularMaterial } from './app.angular-material';
+import { LoginService } from './services/login.service';
+import { TestService } from './services/test.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -87,7 +89,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule
     
   ],
-  providers: [],
+  providers: [LoginService, TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
