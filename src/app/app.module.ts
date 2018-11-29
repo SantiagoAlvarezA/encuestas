@@ -46,6 +46,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularMaterial } from './app.angular-material';
 import { LoginService } from './services/login.service';
 import { TestService } from './services/test.service';
+import { NewTestComponent } from './new-test/new-test.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -55,6 +56,8 @@ const appRoutes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'games', component: GamesComponent },
   { path: 'register/:rol', component: RegisterComponent },
+  { path: 'test/:action', component: NewTestComponent },
+  // { path: '**', component: Page404Component },
 ];
 
 
@@ -69,7 +72,8 @@ const appRoutes: Routes = [
     InformationComponent,
     TestComponent,
     GamesComponent,
-    RegisterComponent
+    RegisterComponent,
+    NewTestComponent
   ],
 
   imports: [

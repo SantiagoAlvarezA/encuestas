@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { TestService } from '../services/test.service';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'app-new-test',
+  templateUrl: './new-test.component.html',
+  styleUrls: ['./new-test.component.css']
 })
-export class TestComponent implements OnInit {
+export class NewTestComponent implements OnInit {
+
   isAuthenticated: boolean = false;
   emailUser: any = null;
   test: any = {};
@@ -21,7 +22,7 @@ export class TestComponent implements OnInit {
       if (result && result.uid) {
         this.isAuthenticated = true;
         this.emailUser = this.login.getUser().currentUser.email;
-        this.router.navigate(['/test']);
+        //this.router.navigate(['/test']);
         this.tests = testServise.getTests();
       } else {
         this.isAuthenticated = false;
@@ -34,6 +35,26 @@ export class TestComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+
+  public setTest() {
+    this.test.id = Date.now();
+    this.testServise.setTest(this.test);
+    this.clearForm();
+  }
+
+  public clearForm() {
+    this.test = {};
+  }
+
+
+  public updateTest() {
+    this.testServise.updateTest(this.test);
+    this.clearForm();
+    this.icon = 'plus';
+    this.action = true;
   }
 
   public deleteTest(id) {
@@ -44,13 +65,23 @@ export class TestComponent implements OnInit {
     this.testServise.getTest(id).valueChanges().subscribe(test => {
       this.test = test;
       this.router.navigate(['/test/update']);
+      // this.icon = 'sync-alt';
+      // this.action = false;
     });
   }
+  public newTest() {
 
-  public newTest( ){
     this.router.navigate(['/test/new']);
+
+
   }
 
-
+  setAction() {
+    if (this.action) {
+      this.setTest();
+    } else {
+      this.updateTest();
+    }
+  }
 
 }

@@ -1,51 +1,31 @@
-<div class="nav pt-3 pb-2">
+<div >
 
-  <ul class="nav nav-pills  text-light font-weight-bold col-auto mr-auto  ">
+  <a routerLink="" class="btn text-light ">
+    <fa-icon icon="brain"></fa-icon>
+    ALGORITBUILD
+  </a>
 
-    <li class="nav-item mr-4 ml-2 ">
-      <a routerLink="" class="btn text-light ">
-        <fa-icon icon="brain"></fa-icon>
-        ALGORITBUILD
-      </a>
-    </li>
+  <a class="btn text-light  " routerLink="about">Sobre nosotros
+    <fa-icon icon="users"></fa-icon>
+  </a>
 
-    <li class="nav-item mr-2 ">
-      <a class="btn text-light  " routerLink="about">Sobre nosotros
-        <fa-icon icon="users"></fa-icon>
-      </a>
-    </li>
+  <a class="btn text-light  " routerLink="/info">Informate
+    <fa-icon icon="info-circle"></fa-icon>
+  </a>
 
-    <li class="nav-item mr-2 ">
-      <a class="btn text-light  " routerLink="/info">Informate
-        <fa-icon icon="info-circle"></fa-icon>
-      </a>
-    </li>
+  <a class="btn text-light  " routerLink="/test">Encuesta
+    <fa-icon icon="poll"></fa-icon>
+  </a>
 
-    <li class="nav-item mr-2 ">
-      <a class="btn text-light  " routerLink="/test">Encuesta
-        <fa-icon icon="poll"></fa-icon>
-      </a>
-    </li>
-
-    <li class="nav-item  ">
-      <a class="btn text-light " routerLink="/games">Juegos
-        <fa-icon icon="gamepad"></fa-icon>
-      </a>
-    </li>
-
-  </ul>
+  <a class="btn text-light " routerLink="/games">Juegos
+    <fa-icon icon="gamepad"></fa-icon>
+  </a>
 
 
-  <div class="col-auto">
-    <a class="btn text-light  " routerLink="/login" *ngIf="!isAuthenticated">Iniciar sesión
-      <fa-icon icon="sign-in-alt">
-      </fa-icon>
-    </a>
+  <a class="btn text-light  float-right" (click)="action()" >{{textButton}}
+    <fa-icon icon="{{icon}}">
+    </fa-icon>
+  </a>
 
-    <a class="btn text-light " (click)="signOut()" *ngIf="isAuthenticated">Cerrar sesión
-      <fa-icon icon="sign-out-alt">
-      </fa-icon>
-    </a>
-  </div>
+
 </div>
-

@@ -20,7 +20,7 @@ export class AppComponent {
         this.router.navigate(['']);
       } else {
         this.isAuthenticated = false;
-        this.router.navigate(['/login']);
+       // this.router.navigate(['/login']);
       }
     }, (error) => {
       this.isAuthenticated = false;
