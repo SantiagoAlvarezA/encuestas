@@ -11,6 +11,17 @@ export class GamesComponent implements OnInit {
 
   isAuthenticated: boolean = false;
   emailUser: any = null;
+  
+
+
+  categorias:any = [
+    {id: 1, name: 'Entrada y Salida'},
+    {id: 2, name: 'Condicionales'},
+    {id: 3, name: 'Ciclos'}
+];
+
+  
+
 
   constructor(private login: LoginService, private router: Router) {
     login.isAuthenticated().subscribe((result) => {
