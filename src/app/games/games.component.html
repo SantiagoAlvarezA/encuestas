@@ -1,3 +1,24 @@
-<p >
-  games works!
-</p>
+<div class="container">
+    <div class="row bg-light">
+        <div class="col-4 bg-info" >
+
+            <h3 class="text-white">JUEGOS</h3><br>
+          <div class="form-inline my-4 my-lg-0">
+            <input class="form-control mr-sm-6 bg-info" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0 " type="submit">Search</button>
+          </div>
+            <div class="col-75">
+                <ng-container *ngFor="let cat of categorias">
+                    <a routerLink="/games-cat/{{cat.id}}" class=" bg-info text-white list-group-item list-group-item-action"><b>( {{ cat.id }} )</b> {{ cat.name }}</a>
+                </ng-container>
+            </div>
+            
+
+        </div>
+        <div class="col-8">
+              <router-outlet></router-outlet>
+
+            </div>
+    </div>
+</div>
+
