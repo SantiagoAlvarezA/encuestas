@@ -1,9 +1,12 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.min.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
 /* @import 'bulma/css/bulma.css'; */
 
-body{
-    background-image: url("https://www.viajejet.com/wp-content/viajes/una-laguna-unica-en-jamaica.jpg");
+body {
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/algoritbuild-21705.appspot.com/o/background.jpg?alt=media&token=c5dc888d-1156-495c-8001-70ef84af890b");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
 }
