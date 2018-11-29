@@ -2,4 +2,8 @@
 @import "~font-awesome/css/font-awesome.min.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import 'bulma/css/bulma.css';
+/* @import 'bulma/css/bulma.css'; */
+
+body{
+    background-image: url("https://www.viajejet.com/wp-content/viajes/una-laguna-unica-en-jamaica.jpg");
+}
