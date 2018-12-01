@@ -1,32 +1,20 @@
-<div class="container ">
-  <div class="row ">
-    <div class="col ">
-      <div class="alert alert-success bg-info" role="alert">
-        <ng-container *ngFor="let game of juegos">
-          <div class="card col-md-12 bg-info" >
-            <ng-container *ngIf="game.id_juego == id_juego">
-              <h1 class="font-weight-light">{{game.name}}</h1>
-              <div class="card bg-dark ">
-                <div class="img">
-                  <img src="{{game.img}}" width="200px" height="200px">
-                </div>
+<ng-container *ngFor="let game of juegos">
+  <div class="card col-md-12 bg-info">
+    <ng-container *ngIf="game.id_juego == id_juego">
+      <h1 class="font-weight-light">{{game.name}}</h1>
+      <div class="card bg-dark ">
+        <div class="img">
+          <img src="{{game.img}}" width="200px" height="200px">
+        </div>
 
-                <div class="detail">
-                  <h6>
-                    <span class="text text-white" >{{game.descripcion}}</span>
-                  </h6>
+        <div class="detail">
+          <h6>
+            <span class="text text-white">{{game.descripcion}}</span>
+          </h6>
 
-                </div>
-              </div>
-
-            </ng-container>
-          </div>
-        </ng-container>
-
-
-        <hr>
-
+        </div>
       </div>
-    </div>
+
+    </ng-container>
   </div>
-</div>
+</ng-container>
