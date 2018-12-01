@@ -1,35 +1,65 @@
-<div class="col-6 offset-3 mt-4  ">
-    <div class="card shadow-lg  mb-4 bg-white">
-        <div class="card-header text-center bg-primary">
-            <h2>LOGIN</h2>
-        </div>
-        <div class="card-body">
-            <div class="form-group">
-                <label>USUARIO</label>
-                <input type="text" class="form-control" [(ngModel)]="login.email" placeholder="Ingrese su nombre usuario">
-            </div>
-            <div class="form-group">
-                <label>CONTRASEÑA</label>
-                <input type="password" class="form-control" [(ngModel)]="login.password" placeholder="Ingrese su contraseña">
-            </div>
+<div class="col-6 col-sm-6 offset-3 mt-5 font-weight-light">
+    <div class="card border-0">
 
+        <div class="card-header p-4 has-text-white has-background-black">
+            <h2 class="m-auto">LOGIN</h2>
+            <a class="icon is-small " routerLink="">
+                <fa-icon icon="times-circle"></fa-icon>
+            </a>
         </div>
-        <div class="card-footer">
-            <div class="row">
-                <div class="col col-sm-12 col-md-6 col-lg-6 text-center">
-                    <button class="btn btn-primary" (click)="signIn()">Iniciar sesión</button>
+
+        <div class="card-content">
+            <div class="content">
+                <div class="field">
+
+                    <label>USUARIO</label>
+                    <p class="control has-icons-left has-icons-right">
+                        <input class="input" type="email" [(ngModel)]="login.email" placeholder="Ingrese su nombre usuario">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                    </p>
                 </div>
-                <div class="col col-sm-12 col-md-6 col-lg-6 text-center">
 
-                    <small class="col-12">Registrarme como</small>
-                    <div class="col-12">
-                        <button class="btn btn-link col-5" routerLink="/register/teacher">Docente</button>
-                        <small class="col-2">o</small>
-                        <button class="btn btn-link col-5" routerLink="/register/student">Estudiante</button>
+                <div class="field">
+                    <label>CONTRASEÑA</label>
+                    <p class="control has-icons-left">
+                        <input type="password" class="input" [(ngModel)]="login.password" placeholder="Ingrese su contraseña">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer has-background-black has-text-white">
+
+
+            <a class="card-footer-item " (click)="signIn()">Iniciar sesión</a>
+
+
+            <div class="card-footer-item">
+
+
+
+                <div class="navbar-item has-dropdown is-hoverable ">
+
+                    <small class="navbar-link has-background-black has-text-white">Registrarme</small>
+
+
+                    <div class="navbar-dropdown has-background-black">
+
+                        <a class="navbar-item has-background-black" routerLink="/register/teacher">Docente</a>
+
+
+                        <a class=" navbar-item has-background-black" routerLink="/register/student">Estudiante</a>
+
+
 
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>

@@ -1,31 +1,44 @@
-<div >
+<!-- <div class="header-jumbotron bg-black">
 
-  <a routerLink="" class="btn text-light ">
-    <fa-icon icon="brain"></fa-icon>
-    ALGORITBUILD
-  </a>
-
-  <a class="btn text-light  " routerLink="about">Sobre nosotros
-    <fa-icon icon="users"></fa-icon>
-  </a>
-
-  <a class="btn text-light  " routerLink="/info">Informate
-    <fa-icon icon="info-circle"></fa-icon>
-  </a>
-
-  <a class="btn text-light  " routerLink="/test">Encuesta
-    <fa-icon icon="poll"></fa-icon>
-  </a>
-
-  <a class="btn text-light " routerLink="/games">Juegos
-    <fa-icon icon="gamepad"></fa-icon>
-  </a>
+  <fa-icon icon="brain" class="mr-2"></fa-icon>
+  <small class="font-weight-light">ALGORITBUILD</small>
 
 
-  <a class="btn text-light  float-right" (click)="action()" >{{textButton}}
-    <fa-icon icon="{{icon}}">
-    </fa-icon>
-  </a>
 
+</div> -->
+<div class="font-weight-light pl-5 pr-5  shadow sticky-top bg-black">
+  <div class="container pl-5 pr-5 pt-2 pb-2">
 
+    <a routerLink="" class=" text-light">
+      <fa-icon icon="brain" class="mr-2"></fa-icon>
+      <small>ALGORITBUILD</small>
+    </a>
+
+    <a class=" text-light   pl-4 pr-4" routerLink="about">
+      <small>Sobre nosotros</small>
+      <!-- <fa-icon icon="users"></fa-icon> -->
+    </a>
+
+    <a class=" text-light  pl-4 pr-4" routerLink="/info">
+      <small>Informate</small>
+      <!-- <fa-icon icon="info-circle"></fa-icon> -->
+    </a>
+
+    <a class="text-light   pl-4 pr-4" routerLink="/test">
+      <small>Encuesta</small>
+      <!-- <fa-icon icon="poll"></fa-icon> -->
+    </a>
+
+    <a class=" text-light  pl-4 pr-4" routerLink="/games">
+      <small>Juegos</small>
+      <!-- <fa-icon icon="gamepad"></fa-icon> -->
+    </a>
+
+    <a class=" text-light  float-right pl-4" (click)="action()">
+      <small>{{user.name}} |</small>
+      <fa-icon icon="{{icon}}" class="ml-2">
+      </fa-icon>
+    </a>
+
+  </div>
 </div>

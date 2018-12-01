@@ -12,18 +12,24 @@ export class HeaderComponent implements OnInit {
 
   isAuthenticated: boolean = false;
   textButton: string;
-  icon: string = 'sign-in-alt';
+  icon: string = 'power-off';
+  user: any = {};
   constructor(private authentication: LoginService, private router: Router) {
-
+    //this.user = authentication.getUid();
     authentication.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
         this.isAuthenticated = true;
+        let id:string = this.authentication.getUser().currentUser.uid;
+        this.user = this.authentication.getUs(id).valueChanges().subscribe(user =>{
+          this.user = user;
+        });
+
 
       } else {
         this.isAuthenticated = false;
 
       }
-      this.icon = (this.isAuthenticated) ? 'sign-out-alt' : 'sign-in-alt';
+      this.icon = (this.isAuthenticated) ? 'power-off' : 'sign-in-alt';
       this.textButton = (this.isAuthenticated) ? 'Cerrar sesión' : 'Iniciar sesión';
 
     }, (error) => {
@@ -51,6 +57,9 @@ export class HeaderComponent implements OnInit {
   public signOut() {
     this.authentication.signOut();
     this.isAuthenticated = false;
+    this.user = {};
   }
+
+
 
 }

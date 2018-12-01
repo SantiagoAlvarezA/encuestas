@@ -8,6 +8,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class LoginService {
 
+  data: any = {};
 
   constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase) {
     this.isAuthenticated();
@@ -21,7 +22,6 @@ export class LoginService {
   public signIn = (email, password) => {
     this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
       .then((response) => {
-        console.log('usuario autenticado con exito');
         this.router.navigate(['/']);
       })
       .catch((error) => {
@@ -37,14 +37,12 @@ export class LoginService {
   }
 
   // Metodo para registrar usuario
-  public register = (email, password, user ) => {
+  public register = (email, password, user) => {
 
     this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((response) => {
         user.id = response.user.uid;
-        this.db.database.ref('users/' + user.id ).set(user);
-
-
+        this.db.database.ref('users/' + user.id).set(user);
         this.router.navigate(['/']);
       })
       .catch((error) => {
@@ -53,7 +51,22 @@ export class LoginService {
   }
 
   // Metodo para obtener los datos del usuario
+  public getUid() {
+
+    this.isAuthenticated().subscribe((resutl) => {
+
+      return resutl.uid;
+    });
+
+  }
+
+  public getUs(id) {
+    return this.db.object('users/' + id);
+  }
+
+
   public getUser() {
     return this.angularFireAuth.auth;
   }
+
 }

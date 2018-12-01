@@ -1,0 +1,8 @@
+@import 'bulma/css/bulma.css';
+.header-jumbotron {
+    padding: 170px 25px;
+    text-align: center;
+    text-anchor: middle;
+    font: 3em sans-serif;
+    color: aliceblue;
+}

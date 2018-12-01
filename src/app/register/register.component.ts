@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+  icon:string="user-graduate";
   login: any = {};
   user: any = {};
 
@@ -22,6 +23,7 @@ export class RegisterComponent implements OnInit {
       } else {
         this.isAuthenticated = false;
         this.user.rol = this.route.snapshot.params.rol;
+        this.icon = (this.user.rol == 'teacher')? 'chalkboard-teacher':'user-graduate';
         // console.log(this.rol);
       }
     }, (error) => {
@@ -30,6 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   public register() {

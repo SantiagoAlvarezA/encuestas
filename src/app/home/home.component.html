@@ -1,16 +1,16 @@
-<div class="card">
+<div class="card ">
     <!-- <img class="card-img-top" src="https://www.viajejet.com/wp-content/viajes/una-laguna-unica-en-jamaica.jpg" alt="Card image"> -->
     <div class="card-img-overlay  text-light d-flex bd-highlight">
 
-        <div class="ml-auto mt-5 p-2 col-3 rounded bg-primary bd-highlight align-self-start text-center" *ngIf="!isAuthenticated">
+        <div class="ml-auto  mt-5 p-2 col-3 rounded bg-black bd-highlight align-self-start text-center" *ngIf="!isAuthenticated">
 
-            <h4>Registrarte como</h4>
-            <button class="p-1 btn btn-lg col-12 " routerLink="/register/teacher">
+            <h4 class="font-weight-light">Registrarte como</h4>
+            <button class="p-1 btn btn-lg col-12 font-weight-light " routerLink="/register/teacher">
 
                 Docente
                 <fa-icon icon="chalkboard-teacher" class="ml-3"></fa-icon>
             </button>
-            <button class="mt-2 p-1 btn btn-lg col-12" routerLink="/register/student">
+            <button class="mt-2 p-1 btn btn-lg col-12 font-weight-light" routerLink="/register/student">
                 Estudiante
                 <fa-icon icon="user-graduate" class="ml-3"></fa-icon>
             </button>

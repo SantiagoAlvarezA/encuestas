@@ -15,6 +15,8 @@ export class TestComponent implements OnInit {
   tests = null;
   icon: string = 'plus';
   action: boolean = true;
+  user:any = {};
+  rol:boolean;
 
   constructor(private login: LoginService, private router: Router, private testServise: TestService) {
     login.isAuthenticated().subscribe((result) => {
@@ -23,6 +25,13 @@ export class TestComponent implements OnInit {
         this.emailUser = this.login.getUser().currentUser.email;
         this.router.navigate(['/test']);
         this.tests = testServise.getTests();
+
+
+        let id:string = this.login.getUser().currentUser.uid;
+        this.user = this.login.getUs(id).valueChanges().subscribe(user =>{
+          this.user = user;
+          this.rol = (this.user.rol == 'teacher') ? true : false;
+        });
       } else {
         this.isAuthenticated = false;
         this.router.navigate(['']);
@@ -50,7 +59,5 @@ export class TestComponent implements OnInit {
   public newTest( ){
     this.router.navigate(['/test/new']);
   }
-
-
 
 }

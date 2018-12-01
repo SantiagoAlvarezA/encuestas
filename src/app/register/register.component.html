@@ -1,27 +1,49 @@
-<div class="col-6 offset-3 mt-4  ">
-  <div class="card shadow-lg  mb-4 bg-white">
-      <div class="card-header text-center bg-primary">
-          <h2>REGISTRAR USUARIO</h2>
-      </div>
-      <div class="card-body">
-          <div class="form-group">
-              <label>CORREO LELECTRONICO</label>
-              <input type="email" class="form-control" [(ngModel)]="login.email" placeholder="Ingrese su correo">
-          </div>
-          <div class="form-group">
-              <label>NOMBRE DE USUARIO</label>
-              <input type="text" class="form-control" [(ngModel)]="user.name" placeholder="Ingrese su nombre">
-          </div>
-          <div class="form-group">
-              <label>CONTRASEÑA</label>
-              <input type="password" class="form-control" [(ngModel)]="login.password" placeholder="Ingrese su contraseña">
-          </div>
+<div class="col-6 offset-3 mt-4 font-weight-light ">
 
-      </div>
-      <div class="card-footer">
-              <div class="col col-sm-12 col-md-6 col-lg-6 offset-3 text-center">
-                  <button class="btn btn-primary" (click)="register()">Registrar usuario</button>
-              
-      </div>
-  </div>
+    <div class="card border-0">
+        <div class="card-header p-4 has-text-white has-background-black ">
+
+            <span class="icon is-small ">
+                <fa-icon icon="{{icon}}"></fa-icon>
+            </span>
+            <h2 class="m-auto">REGISTRAR USUARIO </h2>
+            <a class="icon is-small " routerLink="">
+                <fa-icon icon="times-circle"></fa-icon>
+            </a>
+        </div>
+        <div class="card-content">
+            <div class="content">
+                <div class="field">
+                    <label>CORREO LELECTRONICO</label>
+                    <p class="control has-icons-left">
+
+                        <input type="email" class="input" [(ngModel)]="login.email" placeholder="Ingrese su correo">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                    </p>
+
+                </div>
+                <div class="field">
+                    <label>NOMBRE DE USUARIO</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.name" placeholder="Ingrese su nombre">
+                </div>
+                <div class="field">
+                    <label>CONTRASEÑA</label>
+                    <p class="control has-icons-left">
+                        <input type="password" class="input" [(ngModel)]="login.password" placeholder="Ingrese su contraseña">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer has-background-black has-text-white">
+
+            <a class="card-footer-item" (click)="register()">Registrar usuario</a>
+
+        </div>
+    </div>
 </div>
