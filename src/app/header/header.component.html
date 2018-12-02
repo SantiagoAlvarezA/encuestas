@@ -1,11 +1,11 @@
-<!-- <div class="header-jumbotron bg-black">
+<div class="header-jumbotron bg-black">
 
   <fa-icon icon="brain" class="mr-2"></fa-icon>
   <small class="font-weight-light">ALGORITBUILD</small>
 
 
 
-</div> -->
+</div>
 <div class="font-weight-light pl-5 pr-5  shadow sticky-top bg-black">
   <div class="container pl-5 pr-5 pt-2 pb-2">
 
@@ -14,30 +14,31 @@
       <small>ALGORITBUILD</small>
     </a>
 
-    <a class=" text-light   pl-4 pr-4" routerLink="about">
+    <a class=" text-light   pl-3 pr-3" routerLink="about">
       <small>Sobre nosotros</small>
       <!-- <fa-icon icon="users"></fa-icon> -->
     </a>
 
-    <a class=" text-light  pl-4 pr-4" routerLink="/info">
+    <a class=" text-light  pl-3 pr-3" routerLink="/info">
       <small>Informate</small>
       <!-- <fa-icon icon="info-circle"></fa-icon> -->
     </a>
 
-    <a class="text-light   pl-4 pr-4" routerLink="/test">
+    <a class="text-light   pl-3 pr-3" routerLink="/test">
       <small>Encuesta</small>
       <!-- <fa-icon icon="poll"></fa-icon> -->
     </a>
 
-    <a class=" text-light  pl-4 pr-4" routerLink="/games">
+    <a class=" text-light  pl-3 pr-3" routerLink="/games">
       <small>Juegos</small>
       <!-- <fa-icon icon="gamepad"></fa-icon> -->
     </a>
 
     <a class=" text-light  float-right pl-4" (click)="action()">
-      <small>{{user.name}} |</small>
-      <fa-icon icon="{{icon}}" class="ml-2">
-      </fa-icon>
+      <fa-icon icon="{{iconUser}}" class="ml-2" *ngIf="isAuthenticated"></fa-icon>
+        <small *ngIf="isAuthenticated" class="pr-1"> {{user.name}} </small>
+        <fa-icon icon="{{icon}}" class="ml-2"></fa-icon>
+        
     </a>
 
   </div>
