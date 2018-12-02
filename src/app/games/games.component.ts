@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 
@@ -10,24 +10,15 @@ import { Router } from '@angular/router';
 export class GamesComponent implements OnInit {
 
   isAuthenticated: boolean = false;
-  emailUser: any = null;
-  
 
-
-  categorias:any = [
-    {id: 1, name: 'Entrada y Salida'},
-    {id: 2, name: 'Condicionales'},
-    {id: 3, name: 'Ciclos'}
-];
-
-  
+  id_cat: string = '';
 
 
   constructor(private login: LoginService, private router: Router) {
     login.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
         this.isAuthenticated = true;
-        this.emailUser = this.login.getUser().currentUser.email;
+        // this.emailUser = this.login.getUser().currentUser.email;
         this.router.navigate(['/games']);
       } else {
         this.isAuthenticated = false;
@@ -40,6 +31,10 @@ export class GamesComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  setIdCat(event) {
+    this.id_cat = event.data;
   }
 
 }

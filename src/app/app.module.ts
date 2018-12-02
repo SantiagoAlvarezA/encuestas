@@ -48,7 +48,7 @@ import { LoginService } from './services/login.service';
 import { TestService } from './services/test.service';
 import { NewTestComponent } from './new-test/new-test.component';
 import { GamesCatComponent } from './games-cat/games-cat.component';
-import { GamesprincipalComponent } from './gamesprincipal/gamesprincipal.component';
+import { GamesListComponent } from './games-list/games-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -56,10 +56,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'info', component: InformationComponent },
   { path: 'test', component: TestComponent },
-  // { path: 'games', component: GamesComponent },
-
-  { path: 'gamesprincipal', component: GamesprincipalComponent },
-  { path: 'games-cat/:id_juego', component: GamesCatComponent },
+  { path: 'games', component: GamesComponent },
+  // { path: 'gamesList/:id_juego', component: GamesCatComponent },
   { path: 'register/:rol', component: RegisterComponent },
   { path: 'test/:action', component: NewTestComponent },
   // { path: '**', component: Page404Component },
@@ -80,7 +78,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     NewTestComponent,
     GamesCatComponent,
-    GamesprincipalComponent
+    GamesListComponent
   ],
 
   imports: [

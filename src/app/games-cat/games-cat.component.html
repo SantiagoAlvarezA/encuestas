@@ -1,20 +1,4 @@
-<ng-container *ngFor="let game of juegos">
-  <div class="card col-md-12 bg-info">
-    <ng-container *ngIf="game.id_juego == id_juego">
-      <h1 class="font-weight-light">{{game.name}}</h1>
-      <div class="card bg-dark ">
-        <div class="img">
-          <img src="{{game.img}}" width="200px" height="200px">
-        </div>
-
-        <div class="detail">
-          <h6>
-            <span class="text text-white">{{game.descripcion}}</span>
-          </h6>
-
-        </div>
-      </div>
-
-    </ng-container>
-  </div>
-</ng-container>
+<div *ngFor="let cat of categorias">
+  <a class=" bg-info text-white list-group-item list-group-item-action" (click)="setId(cat.id)">
+    <b>( {{ cat.id }} )</b> {{ cat.name }}</a>
+</div>

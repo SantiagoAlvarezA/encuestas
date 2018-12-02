@@ -1,4 +1,8 @@
-<ng-container *ngFor="let cat of categorias">
-    <a routerLink="/games-cat/{{cat.id}}" class=" bg-info text-white list-group-item list-group-item-action">
-        <b>( {{ cat.id }} )</b> {{ cat.name }}</a>
-</ng-container>
+<div class="row">
+    <div class="col-4">
+        <app-games-cat    (id_cat)="setIdCat($event)"></app-games-cat>
+    </div>
+    <div class="col-8">
+        <app-games-list [id_juego]='id_cat'></app-games-list>
+    </div>
+</div>

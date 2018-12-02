@@ -1,0 +1,26 @@
+<!-- <ng-container *ngFor="let cat of categorias">
+  <a routerLink="/games-cat/{{cat.id}}" class=" bg-info text-white list-group-item list-group-item-action">
+      <b>( {{ cat.id }} )</b> {{ cat.name }}</a>
+</ng-container> -->
+
+
+<ng-container *ngFor="let game of juegos">
+  <div class="card col-md-12 bg-info">
+    <ng-container *ngIf="game.id_juego == id_juego">
+      <h1 class="font-weight-light">{{game.name}}</h1>
+      <div class="card bg-dark ">
+        <div class="img">
+          <img src="{{game.img}}" width="200px" height="200px">
+        </div>
+
+        <div class="detail">
+          <h6>
+            <span class="text text-white">{{game.descripcion}}</span>
+          </h6>
+
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+</ng-container>
