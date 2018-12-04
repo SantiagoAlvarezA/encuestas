@@ -5,6 +5,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
   providedIn: 'root'
 })
 export class TestService {
+  data:any = {};
 
   constructor(private db: AngularFireDatabase) {
 
@@ -27,6 +28,7 @@ export class TestService {
   }
 
   public getTest(id){
+    console.log(this.db.object('test/' + id));
     return this.db.object('test/' + id);
   }
 

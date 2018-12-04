@@ -51,7 +51,7 @@ export class TestComponent implements OnInit {
 
   public getTest(id) {
     this.testServise.getTest(id).valueChanges().subscribe(test => {
-      this.test = test;
+            this.testServise.data = test;
       this.router.navigate(['/test/update']);
     });
   }

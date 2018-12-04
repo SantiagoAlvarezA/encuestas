@@ -22,6 +22,7 @@ export class NewTestComponent implements OnInit {
       if (result && result.uid) {
         this.isAuthenticated = true;
         this.emailUser = this.login.getUser().currentUser.email;
+        this.test = testServise.data;
         //this.router.navigate(['/test']);
         this.tests = testServise.getTests();
       } else {
@@ -41,6 +42,7 @@ export class NewTestComponent implements OnInit {
 
   public setTest() {
     this.test.id = Date.now();
+    this.test.userId = this.login.getUser().currentUser.uid;
     this.testServise.setTest(this.test);
     this.clearForm();
   }
@@ -63,7 +65,7 @@ export class NewTestComponent implements OnInit {
 
   public getTest(id) {
     this.testServise.getTest(id).valueChanges().subscribe(test => {
-      this.test = test;
+      // this.test = test;
       this.router.navigate(['/test/update']);
       // this.icon = 'sync-alt';
       // this.action = false;
