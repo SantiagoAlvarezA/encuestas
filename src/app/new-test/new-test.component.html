@@ -26,7 +26,7 @@
 
     <mat-form-field class="wt" (click)="getThemes()">
       <mat-select>
-        <mat-option *ngFor="let item of themes | async" value = "{{item.theme}}">{{item.theme}}</mat-option>
+        <mat-option *ngFor="let item of themes" value = "{{item.theme}}">{{item.theme}}</mat-option>
         <mat-option (click)="openModal()">Agregar tema</mat-option>
       </mat-select>
     </mat-form-field>
