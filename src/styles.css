@@ -6,7 +6,7 @@
 
 
 body {
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/algoritbuild-21705.appspot.com/o/background.jpg?alt=media&token=c5dc888d-1156-495c-8001-70ef84af890b");
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/algoritbuild-21705.appspot.com/o/fondos-abstractos-color-blanco-para-pantalla-hd-inspirational-cubos-negros-y-azules-3d-wallpaper-arte-y-decoracion-of-fondos-abstractos-color-blanco-para-pantalla-hd.jpg?alt=media&token=6c229f4b-7f97-4646-84ac-a40acd3c1f3f");
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -18,6 +18,11 @@ body {
     position: absolute;
     bottom: 0px;
     right: 5px;
+}
+.imgRedonda {
+    width:200px;
+    height:200px;
+    border-radius:150px;
 }
 
 .top-right {
