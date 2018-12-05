@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
         let id: string = this.authentication.getUser().currentUser.uid;
         this.user = this.authentication.getUs(id).valueChanges().subscribe(user => {
           this.user = user;
-          //this.iconUser = (this.user.rol == 'teacher') ? 'chalkboard-teacher' : 'user-graduate';
+          this.iconUser = (this.user.rol == 'teacher') ? 'chalkboard-teacher' : 'user-graduate';
         });
 
 

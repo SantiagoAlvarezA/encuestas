@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TestService } from '../services/test.service';
 
 @Component({
@@ -17,14 +17,15 @@ export class NewTestComponent implements OnInit {
   icon: string = 'plus';
   action: boolean = true;
 
-  constructor(private login: LoginService, private router: Router, private testServise: TestService) {
+  constructor(private login: LoginService, private router: Router, private testServise: TestService, private activatedRoute: ActivatedRoute) {
     login.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
         this.isAuthenticated = true;
         this.emailUser = this.login.getUser().currentUser.email;
         this.test = testServise.data;
-        //this.router.navigate(['/test']);
         this.tests = testServise.getTests();
+        this.action = (this.activatedRoute.snapshot.params.action == 'new') ? true : false;
+        this.icon = (this.activatedRoute.snapshot.params.action == 'new') ? 'plus' : 'sync-alt';
       } else {
         this.isAuthenticated = false;
         this.router.navigate(['']);
@@ -54,14 +55,13 @@ export class NewTestComponent implements OnInit {
 
   public updateTest() {
     this.testServise.updateTest(this.test);
+    // this.testServise.data = {};
     this.clearForm();
     this.icon = 'plus';
     this.action = true;
   }
 
-  public deleteTest(id) {
-    this.testServise.deleteTest(id);
-  }
+ 
 
   public getTest(id) {
     this.testServise.getTest(id).valueChanges().subscribe(test => {
@@ -71,12 +71,7 @@ export class NewTestComponent implements OnInit {
       // this.action = false;
     });
   }
-  public newTest() {
 
-    this.router.navigate(['/test/new']);
-
-
-  }
 
   setAction() {
     if (this.action) {

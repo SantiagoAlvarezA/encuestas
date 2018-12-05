@@ -28,10 +28,8 @@ export class TestService {
   }
 
   public getTest(id){
-    console.log(this.db.object('test/' + id));
+    // console.log(this.db.object('test/' + id));
     return this.db.object('test/' + id);
-  }
-
-  
+  } 
 
 }
