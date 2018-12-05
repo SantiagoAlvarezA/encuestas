@@ -2,6 +2,7 @@ import {
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatSelectModule,
     
 } from '@angular/material';
 
@@ -12,6 +13,7 @@ import { NgModule } from '@angular/core';
         MatInputModule,
         MatButtonModule,
         MatIconModule,
+        MatSelectModule,
         
     ],
     
@@ -19,6 +21,7 @@ import { NgModule } from '@angular/core';
         MatInputModule,
         MatButtonModule,
         MatIconModule,
+        MatSelectModule,
         
     ],
 })

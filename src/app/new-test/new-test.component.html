@@ -8,7 +8,48 @@
     <textarea matInput placeholder="Descripción y objetivo de la encuesta" [(ngModel)]="test.description"></textarea>
   </mat-form-field>
 
-  <div class="d-flex align-items-end flex-column">
+
+  <div class="d-flex">
+
+    <div class="mr-auto">
+      <a (click)="addQ()">
+        <fa-icon icon="plus"></fa-icon> Agregar pregunta
+      </a>
+    </div>
     <fa-icon icon="{{icon}}" (click)="setAction()"></fa-icon>
   </div>
+
+  <div class="example-container" *ngIf="add">
+    <mat-form-field class="wt">
+      <input matInput placeholder="Pregunta">
+    </mat-form-field>
+
+    <mat-form-field class="wt" (click)="getThemes()">
+      <mat-select>
+        <mat-option *ngFor="let item of themes | async" value = "{{item.theme}}">{{item.theme}}</mat-option>
+        <mat-option (click)="openModal()">Agregar tema</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="modal" [ngClass]="{ 'is-active' : modal }">
+    <div class="modal-background" (click)="openModal()"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <button class="delete" aria-label="close" (click)="openModal()"></button>
+      </header>
+      <section class="modal-card-body">
+
+        <mat-form-field class="example-full-width col-12">
+          <input matInput placeholder="Tema" [(ngModel)]="typeQuestion.theme">
+        </mat-form-field>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" (click)="setTypeQuestion()">Crear</button>
+        <button class="button" (click)="openModal()">Cancelar</button>
+      </footer>
+    </div>
+  </div>
+
+
 </div>

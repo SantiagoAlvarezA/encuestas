@@ -23,7 +23,6 @@ export class TestComponent implements OnInit {
       if (result && result.uid) {
         this.isAuthenticated = true;
         this.emailUser = this.login.getUser().currentUser.email;
-        this.router.navigate(['/test']);
         this.tests = testServise.getTests();
         let id: string = this.login.getUser().currentUser.uid;
         this.user = this.login.getUs(id).valueChanges().subscribe(user => {
@@ -45,13 +44,17 @@ export class TestComponent implements OnInit {
 
   public deleteTest(id) {
     this.testServise.deleteTest(id);
+    this.router.navigate(['test']);
   }
 
-  public getTest(id) {
-    this.testServise.getTest(id).valueChanges().subscribe(test => {
-      this.testServise.data = test;
-    });
+  public getTest(test) {
+    this.testServise.data = test;
+
+    // this.testServise.getTest(id).valueChanges().subscribe(test => {
+    //   this.testServise.data = test;
     this.router.navigate(['/test/update']);
+    // });
+
   }
 
   public newTest() {
