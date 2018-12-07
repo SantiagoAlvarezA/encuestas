@@ -22,6 +22,11 @@ export class NewTestComponent implements OnInit {
   typeQuestion: any = {};
   themes: any = null;
 
+  //preguntas
+  answer: Array<any> = ['opcion'];
+
+  /////
+
 
   constructor(private login: LoginService, private router: Router, private testServise: TestService, private activatedRoute: ActivatedRoute, private typeQuestionService: TypeQuestionService) {
 
@@ -33,10 +38,9 @@ export class NewTestComponent implements OnInit {
         this.tests = testServise.getTests();
         this.action = (this.activatedRoute.snapshot.params.action == 'new') ? true : false;
         this.idTest();
+
         this.icon = (this.activatedRoute.snapshot.params.action == 'new') ? 'save' : 'sync-alt';
-
         this.themes = this.typeQuestionService.getTypeQuestions();
-
       } else {
         this.isAuthenticated = false;
         this.router.navigate(['']);
@@ -51,9 +55,7 @@ export class NewTestComponent implements OnInit {
 
   }
 
-
   public setTest() {
-
     this.test.userId = this.login.getUser().currentUser.uid;
     this.testServise.setTest(this.test);
     this.clearForm();
@@ -63,16 +65,12 @@ export class NewTestComponent implements OnInit {
     this.test = {};
   }
 
-
   public updateTest() {
     this.testServise.updateTest(this.test);
     this.clearForm();
     this.icon = 'save';
     this.action = true;
   }
-
-
-
 
   setAction() {
     if (this.action) {
@@ -115,8 +113,11 @@ export class NewTestComponent implements OnInit {
     this.typeQuestion = {};
     this.themes = null;
     this.testServise.data = {};
-
     this.router.navigate(['/test']);
+  }
+
+  setAnswer() {
+    this.answer.push('opcion');
   }
 
 }

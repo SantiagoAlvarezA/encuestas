@@ -56,10 +56,15 @@
 
     <!-- preguntas -->
     <div class="bg-white pt-3">
+      <button (click)="setAnswer()">add</button>
 
       <div class="">
 
-        <h1>hola mundo??</h1>
+        <mat-radio-group>
+          <div *ngFor="let ans of answer">
+            <mat-radio-button value="1" checked="ans.status">Option 1</mat-radio-button>
+          </div>
+        </mat-radio-group>
 
 
       </div>

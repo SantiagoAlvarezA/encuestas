@@ -5,7 +5,8 @@ import {
     MatSelectModule,
     MatListModule,
     MatCardModule,
-    
+    MatRadioModule,
+
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
@@ -18,17 +19,19 @@ import { NgModule } from '@angular/core';
         MatSelectModule,
         MatListModule,
         MatCardModule,
-        
+        MatRadioModule,
+
     ],
-    
-    exports: [
-        MatInputModule,
-        MatButtonModule,
-        MatIconModule,
-        MatSelectModule,
-        MatListModule,
-        MatCardModule,
-        
-    ],
+
+    exports:
+        [MatRadioModule,
+            MatInputModule,
+            MatButtonModule,
+            MatIconModule,
+            MatSelectModule,
+            MatListModule,
+            MatCardModule,
+
+        ],
 })
 export class AngularMaterial { }
