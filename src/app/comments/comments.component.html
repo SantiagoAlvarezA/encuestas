@@ -24,7 +24,7 @@
     <mat-divider></mat-divider>
 
     <div class="pr-3 pl-3" *ngFor="let com of comments | async">
-        <mat-card class="mt-1 mb-1" *ngIf="test.id == com.testId"><b>@{{com.userName}}</b> {{com.comment}}</mat-card>
+        <mat-card class="mt-1 mb-1" *ngIf="test.id == com.testId"><b class="font-weight-bold">@{{com.userName}}</b> {{com.comment}}</mat-card>
     </div>
 
 </div>
