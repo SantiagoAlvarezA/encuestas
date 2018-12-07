@@ -27,8 +27,14 @@
     <mat-divider></mat-divider>
 
     <div class="pr-3 pl-3" *ngFor="let com of comments | async">
+
         <mat-card class="mt-1 mb-1" *ngIf="test.id == com.testId"><b class="font-weight-bold">@{{com.userName}}</b>
-            {{com.comment}}</mat-card>
+            {{com.comment}}
+
+            <fa-icon class="top-right m-2" icon="times" (click)="deleteComment(com.id)" *ngIf="user.id == com.userId"></fa-icon>
+
+
+        </mat-card>
     </div>
 
 </div>

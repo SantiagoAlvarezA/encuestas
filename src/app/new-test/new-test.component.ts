@@ -3,6 +3,7 @@ import { LoginService } from '../services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TestService } from '../services/test.service';
 import { TypeQuestionService } from '../services/type-question.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-new-test',
@@ -23,9 +24,8 @@ export class NewTestComponent implements OnInit {
   themes: any = null;
 
   //preguntas
-  favoriteSeason: string;
-  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
 
+  answer:any={};
 
   /////
 
@@ -117,7 +117,6 @@ export class NewTestComponent implements OnInit {
     this.testServise.data = {};
     this.router.navigate(['/test']);
   }
-
 
 
 }

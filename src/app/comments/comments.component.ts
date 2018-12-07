@@ -16,6 +16,7 @@ export class CommentsComponent implements OnInit {
   comment: any = {};
   user: any = {};
   isAuthenticated: boolean = false;
+  delete:Boolean = false;
 
 
   constructor(private testService: TestService, private commentsService: CommentsService, private authentication: LoginService, private router : Router) {
@@ -52,6 +53,7 @@ export class CommentsComponent implements OnInit {
     this.comment.id = Date.now();
     this.comment.userName = this.user.firstName + ' ' + this.user.secondName + ' ' + this.user.firstSurname + ' ' + this.user.secondSurname;
     this.comment.testId = this.test.id;
+    this.comment.userId = this.user.id;
     this.commentsService.setComment(this.comment);
     this.comment = {};
 
@@ -65,5 +67,9 @@ export class CommentsComponent implements OnInit {
     this.router.navigate(['/test']);
 
   }
+  deleteComment(id){
+    this.commentsService.deleteComment(id);
+  }
+
 
 }
