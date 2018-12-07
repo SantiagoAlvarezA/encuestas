@@ -23,7 +23,9 @@ export class NewTestComponent implements OnInit {
   themes: any = null;
 
   //preguntas
-  answer: Array<any> = ['opcion'];
+  favoriteSeason: string;
+  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
+
 
   /////
 
@@ -116,8 +118,6 @@ export class NewTestComponent implements OnInit {
     this.router.navigate(['/test']);
   }
 
-  setAnswer() {
-    this.answer.push('opcion');
-  }
+
 
 }
