@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TestService } from '../services/test.service';
 import { CommentsService } from '../services/comments.service';
 import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comments',
@@ -17,7 +18,7 @@ export class CommentsComponent implements OnInit {
   isAuthenticated: boolean = false;
 
 
-  constructor(private testService: TestService, private commentsService: CommentsService, private authentication: LoginService) {
+  constructor(private testService: TestService, private commentsService: CommentsService, private authentication: LoginService, private router : Router) {
 
     this.test = this.testService.data;
     this.testService.data = {};
@@ -52,7 +53,16 @@ export class CommentsComponent implements OnInit {
     this.comment.userName = this.user.firstName + ' ' + this.user.secondName + ' ' + this.user.firstSurname + ' ' + this.user.secondSurname;
     this.comment.testId = this.test.id;
     this.commentsService.setComment(this.comment);
+    this.comment = {};
 
+
+  }
+  close() {
+    this.test = {};
+    this.comment = {};
+    this.user = {};
+    this.testService.data = {};
+    this.router.navigate(['/test']);
 
   }
 

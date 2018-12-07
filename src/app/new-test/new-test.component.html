@@ -57,10 +57,10 @@
     <!-- preguntas -->
     <div class="bg-white pt-3">
 
-      <div class="" >
+      <div class="">
 
         <h1>hola mundo??</h1>
-        
+
 
       </div>
 
@@ -75,12 +75,14 @@
     <mat-list-item>
       <button mat-mini-fab class="m-1" (click)="setAction()">
         <fa-icon icon="{{icon}}"></fa-icon>
-      </button> </mat-list-item>
-    <!-- <mat-list-item>
-      <button mat-mini-fab color="primary" class="m-1" (click)="setAction()">
-        <fa-icon icon="{{icon}}"></fa-icon>
       </button>
-    </mat-list-item> -->
+    </mat-list-item>
+
+    <mat-list-item>
+      <button mat-mini-fab color="primary" class="m-1" (click)="close()">
+        <fa-icon icon="times"></fa-icon>
+      </button>
+    </mat-list-item>
 
   </mat-list>
   <!-- fin guardar encuesta -->

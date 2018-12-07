@@ -1,7 +1,9 @@
-<div class="col-8 offset-2 bg-light pt-4" *ngIf="isAuthenticated">
+<div class="col-8 offset-2 bg-light  font-weight-light shadow p-4" *ngIf="isAuthenticated">
 
+<fa-icon class="top-right m-2" icon="times" (click)="close()"></fa-icon>
 
-    <div class="p-1 mb-2">
+    <div class="p-1 mb-2 ">
+        
         <h4>
             <b>{{test.title}} </b>
             <small>

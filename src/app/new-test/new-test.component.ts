@@ -103,4 +103,20 @@ export class NewTestComponent implements OnInit {
     this.modal = !this.openModal;
   }
 
+  close() {
+    this.isAuthenticated = false;
+    this.emailUser = null;
+    this.test = {};
+    this.tests = null;
+    this.icon = 'save';
+    this.action = true;
+    this.add = false;
+    this.modal = false;
+    this.typeQuestion = {};
+    this.themes = null;
+    this.testServise.data = {};
+
+    this.router.navigate(['/test']);
+  }
+
 }
