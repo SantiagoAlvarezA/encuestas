@@ -20,15 +20,18 @@
 
     <div class="example-container" *ngIf="add">
       <mat-form-field class="wt">
-        <input matInput placeholder="Pregunta">
+        <input matInput placeholder="Pregunta" [(ngModel)]="question.question">
       </mat-form-field>
 
       <mat-form-field class="wt">
         <mat-select placeholder="Tema">
-          <mat-option *ngFor="let item of themes | async" value="{{item.theme}}">{{item.theme}}</mat-option>
+          <mat-option *ngFor="let theme of themes | async" value="{{theme.theme}}" (click)="setIdTheme(theme.id)">{{theme.theme}}</mat-option>
           <mat-option (click)="openModal()">Agregar tema</mat-option>
         </mat-select>
+
       </mat-form-field>
+      <fa-icon icon="save" (click) = "saveQuestion()" class="m-2"></fa-icon>
+
     </div>
 
     <!-- inicio modal -->
@@ -57,19 +60,32 @@
 
 
     <!-- preguntas -->
-    <div class="bg-white pt-3">
-      <mat-radio-group>
-        <mat-radio-button class="col-12">
-          <input matInput placeholder="Respuesta">
-        </mat-radio-button>
-
-        <mat-radio-button class="col-12" >
-          <input matInput placeholder="Respuesta" >
-        </mat-radio-button>
 
 
-      </mat-radio-group>
+    <button mat-mini-fab class="m-1" (click)="openModalAnswer()">
+      Agregar respuesta<fa-icon icon="question-circle"></fa-icon>
+    </button>
 
+
+    <div class="modal" [ngClass]="{ 'is-active' : modalAnswer }">
+      <div class="modal-background" (click)="openModalAnswer()"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <button class="delete" aria-label="close" (click)="openModalAnswer()"></button>
+        </header>
+        <section class="modal-card-body">
+
+          <mat-form-field class="wt">
+            <input matInput placeholder="Pregunta" [(ngModel)]="answer.answer">
+          </mat-form-field>
+          <mat-checkbox (click)="textBtn()">{{textButton}}</mat-checkbox>
+
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" (click)="saveAnswer()">Crear</button>
+          <button class="button" (click)="openModalAnswer()">Cancelar</button>
+        </footer>
+      </div>
     </div>
     <!-- fin preguntas -->
 

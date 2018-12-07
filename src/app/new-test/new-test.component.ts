@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TestService } from '../services/test.service';
 import { TypeQuestionService } from '../services/type-question.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AnswerService } from '../services/answer.service';
+import { QuestionService } from '../services/question.service';
 
 @Component({
   selector: 'app-new-test',
@@ -25,12 +27,18 @@ export class NewTestComponent implements OnInit {
 
   //preguntas
 
-  answer:any={};
+  answer: any = {};
+  modalAnswer: boolean = false;
+  status: boolean = false;
+  textButton: string = 'Respuesta incorrecta';
+  themeId: string;
+  question:any = {};
 
   /////
 
 
-  constructor(private login: LoginService, private router: Router, private testServise: TestService, private activatedRoute: ActivatedRoute, private typeQuestionService: TypeQuestionService) {
+  constructor(private login: LoginService, private router: Router, private testServise: TestService, private activatedRoute: ActivatedRoute, private typeQuestionService: TypeQuestionService, private answerService: AnswerService, private questionService:QuestionService
+  ) {
 
     login.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
@@ -118,5 +126,39 @@ export class NewTestComponent implements OnInit {
     this.router.navigate(['/test']);
   }
 
+  openModalAnswer() {
+    this.modalAnswer = !this.modalAnswer;
+  }
+
+  textBtn() {
+    this.status = !this.status;
+    if (this.status) {
+      this.textButton = 'Respuesta correcta';
+    } else {
+      this.textButton = 'Respuesta incorrecta';
+    }
+
+    console.log(this.textButton);
+  }
+
+  saveAnswer() {
+    this.answer.id = Date.now();
+    this.answer.status = this.status;
+    this.answerService.setAnswer(this.answer);
+    this.openModalAnswer();
+  }
+
+  setIdTheme(id) {
+    this.themeId = id;
+  }
+
+
+  saveQuestion(){
+
+    this.question.id = Date.now();
+    this.question.themeId = this.themeId;
+    this.questionService.setQuestion(this.question);
+
+  }
 
 }
