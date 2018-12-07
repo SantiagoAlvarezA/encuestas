@@ -50,6 +50,7 @@ import { NewTestComponent } from './new-test/new-test.component';
 import { GamesCatComponent } from './games-cat/games-cat.component';
 import { GamesListComponent } from './games-list/games-list.component';
 import { Page404nofoundComponent } from './page404nofound/page404nofound.component';
+import { CommentsComponent } from './comments/comments.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -61,6 +62,7 @@ const appRoutes: Routes = [
   // { path: 'gamesList/:id_juego', component: GamesCatComponent },
   { path: 'register/:rol', component: RegisterComponent },
   { path: 'test/:action', component: NewTestComponent },
+  { path: 'comments', component: CommentsComponent },
   { path: '**', component: Page404nofoundComponent },
 ];
 
@@ -80,7 +82,8 @@ const appRoutes: Routes = [
     NewTestComponent,
     GamesCatComponent,
     GamesListComponent,
-    Page404nofoundComponent
+    Page404nofoundComponent,
+    CommentsComponent
   ],
 
   imports: [

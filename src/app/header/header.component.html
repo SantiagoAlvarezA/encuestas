@@ -1,9 +1,9 @@
-<div class="header-jumbotron bg-black font-weight-light">
+<!-- <div class="header-jumbotron bg-black font-weight-light">
 
   <fa-icon icon="brain" class="mr-2"></fa-icon>
   <small class="font-weight-light">ALGORITBUILD</small>
   
-</div>
+</div> -->
 <div class="font-weight-light pl-5 pr-5  shadow sticky-top bg-black">
   <div class="container pl-5 pr-5 pt-2 pb-2">
 
@@ -22,12 +22,12 @@
       <!-- <fa-icon icon="info-circle"></fa-icon> -->
     </a>
 
-    <a class="text-light   pl-3 pr-3" routerLink="/test">
+    <a class="text-light   pl-3 pr-3" routerLink="/test" *ngIf="isAuthenticated">
       <small>Encuesta</small>
       <!-- <fa-icon icon="poll"></fa-icon> -->
     </a>
 
-    <a class=" text-light  pl-3 pr-3" routerLink="/games">
+    <a class=" text-light  pl-3 pr-3" routerLink="/games" *ngIf="isAuthenticated">
       <small>Juegos</small>
       <!-- <fa-icon icon="gamepad"></fa-icon> -->
     </a>

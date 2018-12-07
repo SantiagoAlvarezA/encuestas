@@ -3,6 +3,8 @@ import {
     MatButtonModule,
     MatIconModule,
     MatSelectModule,
+    MatListModule,
+    MatCardModule,
     
 } from '@angular/material';
 
@@ -14,6 +16,8 @@ import { NgModule } from '@angular/core';
         MatButtonModule,
         MatIconModule,
         MatSelectModule,
+        MatListModule,
+        MatCardModule,
         
     ],
     
@@ -22,6 +26,8 @@ import { NgModule } from '@angular/core';
         MatButtonModule,
         MatIconModule,
         MatSelectModule,
+        MatListModule,
+        MatCardModule,
         
     ],
 })

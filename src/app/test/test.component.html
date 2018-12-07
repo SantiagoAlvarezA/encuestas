@@ -1,28 +1,48 @@
 <div class="row mt-2" *ngIf="isAuthenticated">
 
   <!-- lista las encuestas existentes -->
-  <div class="col-sm-4 col-md-3 col-lg-3 p-1 d-flex " *ngFor="let test of tests | async">
-    <div class="col-12 bg-light">
-      <h5 class="card-title font-weight-bold m-3">{{test.title}}</h5>
+  <ng-container *ngFor="let test of tests | async">
+    
+    <ng-container *ngIf="rol">
+      <ng-container *ngIf="test.userId == user.id">
+        <div class="col-sm-4 col-md-3 col-lg-3 p-1 d-flex ">
+          <div class="col-12  card bg-light rounded-0">
+            <h5 class="card-title font-weight-bold mt-3 mb-3 mr-auto ">{{test.title}}</h5>
 
-      <p class="font-weight-light m-3 ">{{test.description}}</p>
-      <fa-icon class="m-2 top-right" icon="times" (click)="deleteTest(test.id)" *ngIf="rol"></fa-icon>
+            <p class="font-weight-light mb-auto mt-auto">{{test.description}}</p>
+            <fa-icon class="m-2 top-right" icon="times" (click)="deleteTest(test.id)" *ngIf="rol"></fa-icon>
 
 
-      <div class="border-top">
-        <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test)"></fa-icon>
-        <fa-icon icon="comment-alt" class="m-2 float-right icon" (click)="getTest(test.id)"></fa-icon>
-        <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test.id)"></fa-icon>
-        <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test.id)"></fa-icon>
+            <div class="border-top">
+              <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test)"></fa-icon>
+              <fa-icon icon="comment-alt" class="m-2 float-right icon" (click)="setComment(test)"></fa-icon>
+              <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test.id)"></fa-icon>
+              <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test.id)"></fa-icon>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="!rol">
+      <div class="col-sm-4 col-md-3 col-lg-3 p-1 d-flex ">
+        <div class="col-12  card bg-light rounded-0">
+          <h5 class="card-title font-weight-bold mt-3 mb-3 mr-auto ">{{test.title}}</h5>
+
+          <p class="font-weight-light mb-auto mt-auto">{{test.description}}</p>
+          <div class="border-top ">
+            <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test)"></fa-icon>
+            <fa-icon icon="comment-alt" class="m-2 float-right icon" (click)="setComment(test)"></fa-icon>
+            <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test.id)"></fa-icon>
+            <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test.id)"></fa-icon>
+          </div>
+        </div>
       </div>
-    </div>
 
+    </ng-container>
 
-
-
-
-  </div>
-
+  </ng-container>
   <!-- crear una nueva encuesta -->
   <div class="col-sm-4 col-md-3 col-lg-3 p-1 d-flex  " *ngIf="rol">
     <div class="d-flex col-12 bg-light  " (click)="newTest()">

@@ -23,12 +23,8 @@ export class NewTestComponent implements OnInit {
   themes: any = null;
 
 
-  constructor(private login: LoginService,
-    private router: Router,
-    private testServise: TestService,
-    private activatedRoute: ActivatedRoute,
-    private typeQuestionService: TypeQuestionService
-  ) {
+  constructor(private login: LoginService, private router: Router, private testServise: TestService, private activatedRoute: ActivatedRoute, private typeQuestionService: TypeQuestionService) {
+
     login.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
         this.isAuthenticated = true;
@@ -38,6 +34,9 @@ export class NewTestComponent implements OnInit {
         this.action = (this.activatedRoute.snapshot.params.action == 'new') ? true : false;
         this.idTest();
         this.icon = (this.activatedRoute.snapshot.params.action == 'new') ? 'save' : 'sync-alt';
+
+        this.themes = this.typeQuestionService.getTypeQuestions();
+
       } else {
         this.isAuthenticated = false;
         this.router.navigate(['']);
@@ -67,7 +66,6 @@ export class NewTestComponent implements OnInit {
 
   public updateTest() {
     this.testServise.updateTest(this.test);
-    // this.testServise.data = {};
     this.clearForm();
     this.icon = 'save';
     this.action = true;
@@ -87,6 +85,7 @@ export class NewTestComponent implements OnInit {
   public addQ() {
     this.add = !this.add;
   }
+
   public openModal() {
     this.modal = !this.modal;
   }
@@ -102,13 +101,6 @@ export class NewTestComponent implements OnInit {
     this.typeQuestion.testId = this.test.id;
     this.typeQuestionService.setTypeQuestion(this.typeQuestion);
     this.modal = !this.openModal;
-  }
-
-
-  public getThemes() {
-    this.typeQuestionService.getTypeQuestions().subscribe(themes => {
-      this.themes = themes;
-    });
   }
 
 }
