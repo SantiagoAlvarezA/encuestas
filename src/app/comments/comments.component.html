@@ -1,25 +1,28 @@
-<div class="col-8 offset-2 bg-light pt-4">
+<div class="col-8 offset-2 bg-light pt-4" *ngIf="isAuthenticated">
 
 
     <div class="p-1 mb-2">
-        <b>{{test.tittle}} </b>
-        <h4>{{test.description}}</h4>
+        <h4>
+            <b>{{test.title}} </b>
+            <small>
+                {{test.description}}
+            </small>
+
+        </h4>
 
     </div>
-
 
     <mat-divider></mat-divider>
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Escriba un comentario" [(ngModel)]="comment.comment">
     </mat-form-field>
-    <fa-icon icon='fighter-jet' (click)="setCommnet()">
+    <fa-icon icon='fighter-jet' (click)="setComment()">
 
     </fa-icon>
     <mat-divider></mat-divider>
 
-    <div class="pr-3 pl-3" >
-
-        <mat-card class="mt-1 mb-1" *ngFor="let com of comments | async"><b>@{{com.userName}}</b> {{com.comment}}</mat-card>
+    <div class="pr-3 pl-3" *ngFor="let com of comments | async">
+        <mat-card class="mt-1 mb-1" *ngIf="test.id == com.testId"><b>@{{com.userName}}</b> {{com.comment}}</mat-card>
     </div>
 
 </div>

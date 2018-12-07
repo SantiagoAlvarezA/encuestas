@@ -11,15 +11,17 @@ import { LoginService } from '../services/login.service';
 export class CommentsComponent implements OnInit {
 
   test: any = {};
-  comments: any = {};
+  comments: any;
   comment: any = {};
   user: any = {};
   isAuthenticated: boolean = false;
-  constructor(private testService: TestService, private commentsServise: CommentsService, private authentication: LoginService) {
 
 
+  constructor(private testService: TestService, private commentsService: CommentsService, private authentication: LoginService) {
 
-
+    this.test = this.testService.data;
+    this.testService.data = {};
+    this.comments = commentsService.getComments();
 
     authentication.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
@@ -29,9 +31,6 @@ export class CommentsComponent implements OnInit {
           this.user = user;
         });
 
-        this.test = this.testService.data;
-        this.testService.data = {};
-        this.comments = commentsServise.getComments();
 
 
       } else {
@@ -47,11 +46,12 @@ export class CommentsComponent implements OnInit {
   ngOnInit() {
   }
 
-  setCommnet() {
+  setComment() {
 
     this.comment.id = Date.now();
     this.comment.userName = this.user.firstName + ' ' + this.user.secondName + ' ' + this.user.firstSurname + ' ' + this.user.secondSurname;
-    this.commentsServise.setComment(this.comment);
+    this.comment.testId = this.test.id;
+    this.commentsService.setComment(this.comment);
 
 
   }
