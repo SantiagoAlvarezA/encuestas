@@ -1,9 +1,9 @@
 <div class="col-8 offset-2 bg-light  font-weight-light shadow p-4" *ngIf="isAuthenticated">
 
-<fa-icon class="top-right m-2" icon="times" (click)="close()"></fa-icon>
+    <fa-icon class="top-right m-2" icon="times" (click)="close()"></fa-icon>
 
     <div class="p-1 mb-2 ">
-        
+
         <h4>
             <b>{{test.title}} </b>
             <small>
@@ -15,16 +15,20 @@
     </div>
 
     <mat-divider></mat-divider>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Escriba un comentario" [(ngModel)]="comment.comment">
-    </mat-form-field>
-    <fa-icon icon='fighter-jet' (click)="setComment()">
+    <div class="example-full-width ">
+        <mat-form-field class="example-full-width col-11">
+            <input matInput placeholder="Escriba un comentario" [(ngModel)]="comment.comment">
 
-    </fa-icon>
+        </mat-form-field>
+        <fa-icon icon='location-arrow' class="col-1" (click)="setComment()"></fa-icon>
+    </div>
+
+
     <mat-divider></mat-divider>
 
     <div class="pr-3 pl-3" *ngFor="let com of comments | async">
-        <mat-card class="mt-1 mb-1" *ngIf="test.id == com.testId"><b class="font-weight-bold">@{{com.userName}}</b> {{com.comment}}</mat-card>
+        <mat-card class="mt-1 mb-1" *ngIf="test.id == com.testId"><b class="font-weight-bold">@{{com.userName}}</b>
+            {{com.comment}}</mat-card>
     </div>
 
 </div>
