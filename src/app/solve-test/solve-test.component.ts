@@ -48,12 +48,6 @@ export class SolveTestComponent implements OnInit {
       this.router.navigate(['']);
     });
 
-
-
-
-
-
-
   }
 
   ngOnInit() {
@@ -62,20 +56,9 @@ export class SolveTestComponent implements OnInit {
   public setAnswer(questionId, answerId) {
 
 
-    this.data:{answerId} = {
-      'id': answerId,
-      'questionId': questionId,
-      'userId': this.user.id
-    };
 
 
   }
-  setJson() {
 
-
-    console.log(this.data);
-
-
-  }
 
 }
