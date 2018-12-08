@@ -1,0 +1,40 @@
+<div class="font-weight-light col-8 shadow p-3 mb-5 bg-white rounded-0 offset-2 bg-light">
+  <h2 class="mb-5">{{test.title}}</h2>
+
+  <ng-container *ngFor="let theme of themes | async">
+
+    <div class="mb-3 p-2 shadow-sm p-3 mb-5 bg-white rounded" *ngIf="theme.testId == test.id">
+      <div class="d-flex">
+        <h3>
+          {{theme.theme}}
+        </h3>
+      </div>
+      <mat-divider class="mt-2 mb-3"></mat-divider>
+      <ng-container *ngFor="let question of questions | async">
+        <div class="hover shadow-sm p-3 mb-5 bg-white rounded " *ngIf="question.themeId == theme.id">
+          <div class="d-flex">
+            <b class="font-weight-bold ">¿ {{question.question}} ?</b>
+          </div>
+          <mat-divider class="mt-2 mb-2"></mat-divider>
+          <ng-container>
+
+            <mat-radio-group class="example-radio-group">
+              <div *ngFor="let answer of answers | async">
+                <mat-radio-button class="example-radio-button" [value]="answer" *ngIf="question.id == answer.questionId">
+                  {{answer.answer}}
+                </mat-radio-button>
+              </div>
+            </mat-radio-group>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <div class=" d-flex">
+    <a class="ml-auto btn-primary">Guardar y enviar respuestas</a>
+
+  </div>
+
+
+</div>

@@ -3,7 +3,6 @@ import { LoginService } from '../services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TestService } from '../services/test.service';
 import { TypeQuestionService } from '../services/type-question.service';
-import { FormControl, FormGroup } from '@angular/forms';
 import { AnswerService } from '../services/answer.service';
 import { QuestionService } from '../services/question.service';
 
@@ -16,41 +15,62 @@ export class NewTestComponent implements OnInit {
 
   isAuthenticated: boolean = false;
   emailUser: any = null;
-  test: any = {};
-  tests = null;
   icon: string = 'save';
   action: boolean = true;
-  add: boolean = false;
-  modal: boolean = false;
-  typeQuestion: any = {};
+
+
+  tests: any = null;
+  test: any = {};
   themes: any = null;
+  theme: any = {};
+  questions: any = null;
+  question: any = {};
+  answers: any = null;
+  answer: any = {};
+
+
+  // tstRespuesta:any = {};
+
+
+  /*                 MODALES                */
+  modalTheme: boolean = false;
+  modalQuestion: boolean = false;
+  modalAnswer: boolean = false;
+  /*                 *******                */
+
+
 
   //preguntas
 
-  answer: any = {};
-  modalAnswer: boolean = false;
   status: boolean = false;
   textButton: string = 'Respuesta incorrecta';
-  themeId: string;
-  question:any = {};
+
 
   /////
 
 
-  constructor(private login: LoginService, private router: Router, private testServise: TestService, private activatedRoute: ActivatedRoute, private typeQuestionService: TypeQuestionService, private answerService: AnswerService, private questionService:QuestionService
+  constructor(private login: LoginService, private router: Router, private testServise: TestService, private activatedRoute: ActivatedRoute, private themeService: TypeQuestionService, private answerService: AnswerService, private questionService: QuestionService
   ) {
 
     login.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
         this.isAuthenticated = true;
         this.emailUser = this.login.getUser().currentUser.email;
+
+
+
         this.test = testServise.data;
-        this.tests = testServise.getTests();
+        this.themes = this.themeService.getTypeQuestions();
+        this.questions = this.questionService.getQuestions();
+        this.answers = this.answerService.getAnswers();
+
+
+
+
         this.action = (this.activatedRoute.snapshot.params.action == 'new') ? true : false;
         this.idTest();
 
         this.icon = (this.activatedRoute.snapshot.params.action == 'new') ? 'save' : 'sync-alt';
-        this.themes = this.typeQuestionService.getTypeQuestions();
       } else {
         this.isAuthenticated = false;
         this.router.navigate(['']);
@@ -64,6 +84,50 @@ export class NewTestComponent implements OnInit {
   ngOnInit() {
 
   }
+
+
+  /*                 MODALES                */
+
+  openModalTheme() {
+    this.modalTheme = !this.modalTheme;
+  }
+
+  openModalQuestion(themeId) {
+    this.modalQuestion = !this.modalQuestion;
+    this.question.themeId = themeId;
+  }
+
+  openModalAnswer(questionId) {
+    this.modalAnswer = !this.modalAnswer;
+    this.answer.questionId = questionId;
+  }
+
+  /*                 *******                */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   public setTest() {
     this.test.userId = this.login.getUser().currentUser.uid;
@@ -90,13 +154,8 @@ export class NewTestComponent implements OnInit {
     }
   }
 
-  public addQ() {
-    this.add = !this.add;
-  }
 
-  public openModal() {
-    this.modal = !this.modal;
-  }
+
 
   public idTest() {
     if (this.action) {
@@ -104,12 +163,6 @@ export class NewTestComponent implements OnInit {
     }
   }
 
-  public setTypeQuestion() {
-    this.typeQuestion.id = Date.now();
-    this.typeQuestion.testId = this.test.id;
-    this.typeQuestionService.setTypeQuestion(this.typeQuestion);
-    this.modal = !this.openModal;
-  }
 
   close() {
     this.isAuthenticated = false;
@@ -118,17 +171,11 @@ export class NewTestComponent implements OnInit {
     this.tests = null;
     this.icon = 'save';
     this.action = true;
-    this.add = false;
-    this.modal = false;
-    this.typeQuestion = {};
     this.themes = null;
     this.testServise.data = {};
     this.router.navigate(['/test']);
   }
 
-  openModalAnswer() {
-    this.modalAnswer = !this.modalAnswer;
-  }
 
   textBtn() {
     this.status = !this.status;
@@ -137,28 +184,34 @@ export class NewTestComponent implements OnInit {
     } else {
       this.textButton = 'Respuesta incorrecta';
     }
+  }
 
-    console.log(this.textButton);
+
+  saveTheme(){
+    this.theme.testId = this.test.id;
+    this.theme.id = Date.now();
+    this.themeService.setTypeQuestion(this.theme);
+    this.theme = {};
+    this.openModalTheme();
+  }
+
+  saveQuestion() {
+    this.question.id = Date.now();
+    this.questionService.setQuestion(this.question);
+    this.question = {};
+    this.modalQuestion = !this.modalQuestion;
   }
 
   saveAnswer() {
     this.answer.id = Date.now();
     this.answer.status = this.status;
     this.answerService.setAnswer(this.answer);
-    this.openModalAnswer();
+    this.answer = {};
+    this.modalAnswer = !this.modalAnswer;
+    this.status = false;
   }
 
-  setIdTheme(id) {
-    this.themeId = id;
-  }
 
 
-  saveQuestion(){
-
-    this.question.id = Date.now();
-    this.question.themeId = this.themeId;
-    this.questionService.setQuestion(this.question);
-
-  }
 
 }

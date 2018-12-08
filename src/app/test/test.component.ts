@@ -70,7 +70,11 @@ export class TestComponent implements OnInit {
 
   setComment(test){
     this.testServise.data = test;
-    this.router.navigate(['/comments'])
+    this.router.navigate(['/comments']);
+  }
+ solveTest(test){
+    this.testServise.data = test;
+    this.router.navigate(['/solve']);
   }
 
 
