@@ -17,10 +17,9 @@
           </div>
           <mat-divider class="mt-2 mb-2"></mat-divider>
           <ng-container>
-
-            <mat-radio-group class="example-radio-group">
+            <mat-radio-group class="example-radio-group" >
               <div *ngFor="let answer of answers | async">
-                <mat-radio-button class="example-radio-button" [value]="answer" *ngIf="question.id == answer.questionId">
+                <mat-radio-button class="example-radio-button" [value]="answer.id" *ngIf="question.id == answer.questionId" (click)="setAnswer(question.id,answer.id)">
                   {{answer.answer}}
                 </mat-radio-button>
               </div>
@@ -32,7 +31,7 @@
   </ng-container>
 
   <div class=" d-flex">
-    <a class="ml-auto btn-primary">Guardar y enviar respuestas</a>
+    <a class="ml-auto btn btn-primary" (click)="setJson()"> Guardar y enviar respuestas</a>
 
   </div>
 

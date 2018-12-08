@@ -23,6 +23,8 @@ export class SolveTestComponent implements OnInit {
   questions: any = null;
   answers: any = null;
 
+  data: any = {};
+
   constructor(private testServise: TestService, private themeService: TypeQuestionService, private questionService: QuestionService, private answerService: AnswerService, private loginService: LoginService, private router: Router) {
 
     this.loginService.isAuthenticated().subscribe((result) => {
@@ -55,6 +57,25 @@ export class SolveTestComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public setAnswer(questionId, answerId) {
+
+
+    this.data:{answerId} = {
+      'id': answerId,
+      'questionId': questionId,
+      'userId': this.user.id
+    };
+
+
+  }
+  setJson() {
+
+
+    console.log(this.data);
+
+
   }
 
 }
