@@ -15,38 +15,20 @@ export class NewTestComponent implements OnInit {
 
   isAuthenticated: boolean = false;
   emailUser: any = null;
+  userId: any = null;
   icon: string = 'save';
   action: boolean = true;
 
 
-  tests: any = null;
-  test: any = {};
-  themes: any = null;
-  theme: any = {};
-  questions: any = null;
-  question: any = {};
-  answers: any = null;
-  answer: any = {};
+  test: Array<any> = [];
+  testList: Array<any> = [];
+  theme: Array<any> = [];
+  themeList: Array<any> = [];
+  question: Array<any> = [];
+  questionList: Array<any> = [];
+  answer: Array<any> = [];
+  answerList: Array<any> = [];
 
-
-  // tstRespuesta:any = {};
-
-
-  /*                 MODALES                */
-  modalTheme: boolean = false;
-  modalQuestion: boolean = false;
-  modalAnswer: boolean = false;
-  /*                 *******                */
-
-
-
-  //preguntas
-
-  status: boolean = false;
-  textButton: string = 'Respuesta incorrecta';
-
-
-  /////
 
 
   constructor(private login: LoginService, private router: Router, private testServise: TestService, private activatedRoute: ActivatedRoute, private themeService: TypeQuestionService, private answerService: AnswerService, private questionService: QuestionService
@@ -56,20 +38,9 @@ export class NewTestComponent implements OnInit {
       if (result && result.uid) {
         this.isAuthenticated = true;
         this.emailUser = this.login.getUser().currentUser.email;
-
-
-
-        this.test = testServise.data;
-        this.themes = this.themeService.getTypeQuestions();
-        this.questions = this.questionService.getQuestions();
-        this.answers = this.answerService.getAnswers();
-
-
-
+        this.userId = this.login.getUser().currentUser.uid;
 
         this.action = (this.activatedRoute.snapshot.params.action == 'new') ? true : false;
-        this.idTest();
-
         this.icon = (this.activatedRoute.snapshot.params.action == 'new') ? 'save' : 'sync-alt';
       } else {
         this.isAuthenticated = false;
@@ -86,132 +57,165 @@ export class NewTestComponent implements OnInit {
   }
 
 
-  /*                 MODALES                */
 
-  openModalTheme() {
-    this.modalTheme = !this.modalTheme;
+
+  /*                   TEST                 */
+
+  createTest(test: any) {
+    this.testList.push({
+      title: test.title,
+      userId: this.userId,
+      description: test.description,
+      id: Date.now()
+    });
+
+    this.test = [];
   }
 
-  openModalQuestion(themeId) {
-    this.modalQuestion = !this.modalQuestion;
-    this.question.themeId = themeId;
+
+  deleteTest(data: any) {
+    this.testList.splice(this.testList.indexOf(data), 1);
+
+    for (let t = 0; t < this.themeList.length; t++) {
+      if (data.id == this.themeList[t].testId) {
+
+        for (let q = 0; q < this.questionList.length; q++) {
+          if (this.themeList[t].id == this.questionList[q].themeId) {
+
+            for (let r = 0; r < this.answerList.length; r++) {
+              if (this.questionList[q].id == this.answerList[r].questionId) {
+                this.answerList.splice(r, 1);
+                r--;
+              }
+
+            }
+            this.questionList.splice(q, 1);
+            q--;
+          }
+        }
+        this.themeList.splice(t, 1);
+        t--;
+      }
+
+    }
+
+
   }
 
-  openModalAnswer(questionId) {
-    this.modalAnswer = !this.modalAnswer;
-    this.answer.questionId = questionId;
+  deleteTheme(data: any) {
+    this.themeList.splice(this.themeList.indexOf(data), 1);
+    for (let q = 0; q < this.questionList.length; q++) {
+      if (data.id == this.questionList[q].themeId) {
+
+        for (let r = 0; r < this.answerList.length; r++) {
+          if (this.questionList[q].id == this.answerList[r].questionId) {
+            this.answerList.splice(r, 1);
+            r--;
+          }
+
+        }
+        this.questionList.splice(q, 1);
+        q--;
+      }
+    }
   }
+
+  deleteQuestion(data: any) {
+    this.questionList.splice(this.questionList.indexOf(data), 1);
+
+    for (let r = 0; r < this.answerList.length; r++) {
+      if (data.id == this.answerList[r].questionId) {
+        this.answerList.splice(r, 1);
+        r--;
+      }
+
+    }
+
+  }
+
+  deleteAnswer(data: any) {
+    this.answerList.splice(this.answerList.indexOf(data), 1);
+  }
+
+  saveTheme(theme: any, testId: any) {
+    this.themeList.push({
+      theme: theme.theme,
+      id: Date.now(),
+      testId: testId
+    });
+    this.theme = [];
+  }
+
+  saveQuestion(question: any, themeId: any) {
+    this.questionList.push({
+      question: question.question,
+      id: Date.now(),
+      themeId: themeId
+    });
+    this.question = [];
+
+  }
+  saveAnswer(answer: any, questionId: any) {
+    this.answerList.push({
+      answer: answer.answer,
+      id: Date.now(),
+      questionId: questionId,
+      status: false
+    });
+    this.answer = [];
+
+  }
+
+  status(answer: any) {
+    let index = 0;
+    this.answerList.forEach(element => {
+
+      if (element.questionId == answer.questionId) {
+        if (element.id == answer.id) {
+          element.status = true;
+          this.answerList.splice(index, 1, element);
+        } else {
+          element.status = false;
+          this.answerList.splice(index, 1, element);
+        }
+      }
+      index++;
+    })
+
+  }
+
 
   /*                 *******                */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  public setTest() {
-    this.test.userId = this.login.getUser().currentUser.uid;
-    this.testServise.setTest(this.test);
-    this.clearForm();
-  }
-
-  public clearForm() {
-    this.test = {};
-  }
-
-  public updateTest() {
-    this.testServise.updateTest(this.test);
-    this.clearForm();
-    this.icon = 'save';
-    this.action = true;
-  }
-
-  setAction() {
-    if (this.action) {
-      this.setTest();
-    } else {
-      this.updateTest();
-    }
-  }
-
-
-
-
-  public idTest() {
-    if (this.action) {
-      this.test.id = Date.now();
-    }
-  }
 
 
   close() {
     this.isAuthenticated = false;
     this.emailUser = null;
-    this.test = {};
-    this.tests = null;
+    this.test = [];
     this.icon = 'save';
     this.action = true;
-    this.themes = null;
     this.testServise.data = {};
     this.router.navigate(['/test']);
   }
 
 
-  textBtn() {
-    this.status = !this.status;
-    if (this.status) {
-      this.textButton = 'Respuesta correcta';
-    } else {
-      this.textButton = 'Respuesta incorrecta';
-    }
+  saveAll() {
+
+    this.testServise.setTest(this.testList);
+    this.themeService.setTypeQuestion(this.themeList);
+    this.questionService.setQuestion(this.questionList);
+    this.answerService.setAnswer(this.answerList);
+
+
+    this.answerList = [];
+    this.themeList = [];
+    this.questionList = [];
+    this.testList = [];
+    this.answer = [];
+    this.theme = [];
+    this.question = [];
+    this.test = [];
   }
-
-
-  saveTheme(){
-    this.theme.testId = this.test.id;
-    this.theme.id = Date.now();
-    this.themeService.setTypeQuestion(this.theme);
-    this.theme = {};
-    this.openModalTheme();
-  }
-
-  saveQuestion() {
-    this.question.id = Date.now();
-    this.questionService.setQuestion(this.question);
-    this.question = {};
-    this.modalQuestion = !this.modalQuestion;
-  }
-
-  saveAnswer() {
-    this.answer.id = Date.now();
-    this.answer.status = this.status;
-    this.answerService.setAnswer(this.answer);
-    this.answer = {};
-    this.modalAnswer = !this.modalAnswer;
-    this.status = false;
-  }
-
-
 
 
 }

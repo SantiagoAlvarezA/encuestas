@@ -72,9 +72,15 @@ export class TestComponent implements OnInit {
     this.testServise.data = test;
     this.router.navigate(['/comments']);
   }
+
  solveTest(test){
     this.testServise.data = test;
     this.router.navigate(['/solve']);
+  }
+
+  setDataAnalysis(test:any){
+    this.testServise.data = test;
+    this.router.navigate(['/data-analysis']);
   }
 
 

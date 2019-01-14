@@ -52,6 +52,7 @@ import { GamesListComponent } from './games-list/games-list.component';
 import { Page404nofoundComponent } from './page404nofound/page404nofound.component';
 import { CommentsComponent } from './comments/comments.component';
 import { SolveTestComponent } from './solve-test/solve-test.component';
+import { DataAnalysisComponent } from './data-analysis/data-analysis.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
   { path: 'test/:action', component: NewTestComponent },
   { path: 'comments', component: CommentsComponent },  
   { path: 'solve', component: SolveTestComponent },  
+  { path: 'data-analysis', component: DataAnalysisComponent },  
   { path: '**', component: Page404nofoundComponent },
 ];
 
@@ -86,7 +88,8 @@ const appRoutes: Routes = [
     GamesListComponent,
     Page404nofoundComponent,
     CommentsComponent,
-    SolveTestComponent
+    SolveTestComponent,
+    DataAnalysisComponent
   ],
 
   imports: [

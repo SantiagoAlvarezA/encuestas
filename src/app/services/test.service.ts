@@ -11,8 +11,11 @@ export class TestService {
 
   }
 
-  public setTest(test) {
-    this.db.database.ref('test/' + test.id).set(test);
+  public setTest(testData) {
+    testData.forEach(test => {
+     this.db.database.ref('test/' + test.id).set(test);
+
+    });
   }
 
   public getTests() {

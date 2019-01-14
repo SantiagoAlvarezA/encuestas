@@ -11,8 +11,10 @@ export class AnswerService {
 
   }
 
-  public setAnswer(answer) {
-    this.db.database.ref('answer/' + answer.id).set(answer);
+  public setAnswer(answerData) {
+    answerData.forEach(answer => {
+      this.db.database.ref('answer/' + answer.id).set(answer);
+    });
   }
 
   public getAnswers() {

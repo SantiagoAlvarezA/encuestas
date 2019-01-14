@@ -5,6 +5,7 @@ import { QuestionService } from '../services/question.service';
 import { AnswerService } from '../services/answer.service';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { ResultsService } from '../services/results.service';
 
 @Component({
   selector: 'app-solve-test',
@@ -22,10 +23,12 @@ export class SolveTestComponent implements OnInit {
   themes: any = null;
   questions: any = null;
   answers: any = null;
+  resultList: Array<any> = [];
+  userId: string = '';
 
   data: any = {};
 
-  constructor(private testServise: TestService, private themeService: TypeQuestionService, private questionService: QuestionService, private answerService: AnswerService, private loginService: LoginService, private router: Router) {
+  constructor(private testServise: TestService, private themeService: TypeQuestionService, private questionService: QuestionService, private answerService: AnswerService, private loginService: LoginService, private router: Router, private resultsService: ResultsService) {
 
     this.loginService.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
@@ -35,8 +38,8 @@ export class SolveTestComponent implements OnInit {
         this.questions = this.questionService.getQuestions();
         this.answers = this.answerService.getAnswers();
 
-        let id: string = this.loginService.getUser().currentUser.uid;
-        this.user = this.loginService.getUs(id).valueChanges().subscribe(user => {
+        this.userId = this.loginService.getUser().currentUser.uid;
+        this.user = this.loginService.getUs(this.userId).valueChanges().subscribe(user => {
           this.user = user;
         });
       } else {
@@ -53,12 +56,30 @@ export class SolveTestComponent implements OnInit {
   ngOnInit() {
   }
 
-  public setAnswer(questionId, answerId) {
-
-
-
-
+  saveResult() {
+    this.resultsService.setRersult(this.resultList);
+    this.resultList = [];
   }
+
+  setAnswer(questionId, answerId) {
+
+    let exist = false;
+    let position: number;
+    this.resultList.forEach(element => {
+      if (element.questionId == questionId) {
+        exist = true;
+        position = this.resultList.indexOf(element);
+      }
+
+    });
+
+    if (exist) {
+      this.resultList.splice(position, 1, { id: Date.now(), userId: this.userId, questionId: questionId, answerId: answerId });
+    } else {
+      this.resultList.push({ id: Date.now(), userId: this.userId, questionId: questionId, answerId: answerId })
+    }
+  }
+
 
 
 }

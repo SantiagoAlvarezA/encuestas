@@ -1,0 +1,23 @@
+<div class="bg-light p-2">
+
+  <table class="table table-hover m-1 table-bordered p-1">
+    <caption>{{test.title}} <br>
+    <small>{{test.description}}</small></caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">PREGUNTA</th>
+        <th scope="col">ESTUDIANTES QUE RESPONDIERON CORRECTAMENTE</th>
+        <th scope="col">ESTUDIANTES QUE RESPONDIERON INCORRECTAMENTE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <th scope="row" ></th>
+        <td>¿ {{data.question}} ?.</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

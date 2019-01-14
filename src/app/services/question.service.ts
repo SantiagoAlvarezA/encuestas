@@ -11,8 +11,10 @@ export class QuestionService {
 
   }
 
-  public setQuestion(question) {
-    this.db.database.ref('question/' + question.id).set(question);
+  public setQuestion(questionData) {
+    questionData.forEach(question => {
+      this.db.database.ref('question/' + question.id).set(question);
+    });
   }
 
   public getQuestions() {
@@ -29,5 +31,21 @@ export class QuestionService {
 
   public getQuestion(id) {
     return this.db.object('question/' + id);
+  }
+
+  getQuestionOfThemeId(themeId) {
+    var data = [];
+    this.db.list('question/').valueChanges().subscribe(d => {
+
+      d.forEach(element => {
+        if (element['themeId'] == themeId) {
+
+          data.push(element);
+
+        }
+      });
+    });
+    return data;
+
   }
 }
