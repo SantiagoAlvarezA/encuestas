@@ -58,6 +58,7 @@ export class SolveTestComponent implements OnInit {
 
   saveResult() {
     this.resultsService.setRersult(this.resultList);
+    this.router.navigate(['test']);
     this.resultList = [];
   }
 

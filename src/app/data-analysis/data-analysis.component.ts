@@ -85,7 +85,6 @@ export class DataAnalysisComponent implements OnInit {
                               } else {
                                 incorrectas++;
                               }
-
                               question['correctas']=  correctas ;
                               question['incorrectas']=  incorrectas ;
                             });
