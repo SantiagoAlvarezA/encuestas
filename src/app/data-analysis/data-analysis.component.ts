@@ -7,6 +7,7 @@ import { QuestionService } from '../services/question.service';
 import { TypeQuestionService } from '../services/type-question.service';
 import { AnswerService } from '../services/answer.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { database } from 'firebase';
 
 @Component({
   selector: 'app-data-analysis',
@@ -58,31 +59,44 @@ export class DataAnalysisComponent implements OnInit {
 
   dataAnalysis(id) {
     this.typeQuestionService.getTypeQuestions().subscribe(theme => {
-
       theme.forEach(theme => {
         if (theme['testId'] == id) {
-          // console.log(theme);
-
           this.questionService.getQuestions().subscribe(question => {
 
             question.forEach(question => {
               if (question['themeId'] == theme['id']) {
-                this.data.push(question);
-
+                var correctas = 0;
+                var incorrectas = 0;
+                
                 this.answerService.getAnswers().subscribe(answer => {
                   answer.forEach(answer => {
                     if (answer['questionId'] == question['id']) {
 
-
                       this.resultServise.getRersults().subscribe(result => {
                         result.forEach(result => {
 
-                          if (answer['id'] == result['answerId'] && question['id'] == result['questionId'] ) {
-                            console.log(result);
+
+                          if (answer['id'] == result['answerId']) {
+
+                            this.answerService.getAnswer(result['answerId']).valueChanges().subscribe(status => {
+
+                              if (status['status']) {
+                                correctas++;
+                              } else {
+                                incorrectas++;
+                              }
+
+                              question['correctas']=  correctas ;
+                              question['incorrectas']=  incorrectas ;
+                            });
+
+
                           }
 
 
                         });
+
+
                       })
 
 
@@ -95,6 +109,8 @@ export class DataAnalysisComponent implements OnInit {
 
                 });
 
+             
+                this.data.push(question);
 
 
 
@@ -110,6 +126,7 @@ export class DataAnalysisComponent implements OnInit {
       });
 
     });
+    console.log(this.data)
   }
 
 
