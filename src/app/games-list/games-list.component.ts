@@ -31,7 +31,11 @@ export class GamesListComponent implements OnInit {
 
   navegateToGame(gameUrl){
     // this.router.navigate([gameUrl]);
-    this.router.navigateByUrl(gameUrl);
+    if(gameUrl != ''){
+      window.open(gameUrl, '_blank');
+    }
+    
+    // this.router.navigateByUrl(gameUrl);
   }
 
 }
