@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist\\Encuestas",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

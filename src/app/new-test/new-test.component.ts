@@ -6,6 +6,7 @@ import { TypeQuestionService } from '../services/type-question.service';
 import { AnswerService } from '../services/answer.service';
 import { QuestionService } from '../services/question.service';
 
+
 @Component({
   selector: 'app-new-test',
   templateUrl: './new-test.component.html',
@@ -18,6 +19,10 @@ export class NewTestComponent implements OnInit {
   userId: any = null;
   icon: string = 'save';
   action: boolean = true;
+
+
+  title: string = '';
+  description: string = '';
 
 
   test: Array<any> = [];
@@ -61,15 +66,17 @@ export class NewTestComponent implements OnInit {
 
   /*                   TEST                 */
 
-  createTest(test: any) {
+  createTest(title, description) {
     this.testList.push({
-      title: test.title,
+      title: title,
       userId: this.userId,
-      description: test.description,
+      description: description,
       id: Date.now()
     });
 
     this.test = [];
+    this.title = '';
+    this.description = '';
   }
 
 
@@ -192,6 +199,8 @@ export class NewTestComponent implements OnInit {
     this.isAuthenticated = false;
     this.emailUser = null;
     this.test = [];
+    this.title = '';
+    this.description = '';
     this.icon = 'save';
     this.action = true;
     this.testServise.data = {};
@@ -205,6 +214,9 @@ export class NewTestComponent implements OnInit {
     this.themeService.setTypeQuestion(this.themeList);
     this.questionService.setQuestion(this.questionList);
     this.answerService.setAnswer(this.answerList);
+    
+    this.title = '';
+    this.description = '';
 
 
     this.answerList = [];

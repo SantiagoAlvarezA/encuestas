@@ -2,16 +2,16 @@
   <div class="col-8 offset-2 shadow p-3 mb-5 bg-white">
 
     <mat-form-field class="example-full-width col-12">
-      <input matInput placeholder="Título de la encuesta" [(ngModel)]="test.title">
+      <input matInput placeholder="Título de la encuesta" [(ngModel)]="title">
     </mat-form-field>
 
     <mat-form-field class="example-full-width col-12">
-      <textarea matInput placeholder="Descripción y objetivo de la encuesta" [(ngModel)]="test.description"></textarea>
+      <textarea matInput placeholder="Descripción y objetivo de la encuesta" [(ngModel)]="description"></textarea>
     </mat-form-field>
 
 
 
-    <a class="button is-primary is-fullwidth" (click)=" createTest(test)">Crear test</a>
+    <a class="button is-primary is-fullwidth" (click)=" createTest(title,description)">Crear test</a>
 
 
 
