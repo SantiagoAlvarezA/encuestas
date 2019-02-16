@@ -62,7 +62,7 @@ export class SolveTestComponent implements OnInit {
     this.resultList = [];
   }
 
-  setAnswer(questionId, answerId) {
+  setAnswer(questionId, answerId, status) {
 
     let exist = false;
     let position: number;
@@ -71,13 +71,12 @@ export class SolveTestComponent implements OnInit {
         exist = true;
         position = this.resultList.indexOf(element);
       }
-
     });
 
     if (exist) {
-      this.resultList.splice(position, 1, { id: Date.now(), userId: this.userId, questionId: questionId, answerId: answerId });
+      this.resultList.splice(position, 1, { id: Date.now(), userId: this.userId, questionId: questionId, answerId: answerId, status:status });
     } else {
-      this.resultList.push({ id: Date.now(), userId: this.userId, questionId: questionId, answerId: answerId })
+      this.resultList.push({ id: Date.now(), userId: this.userId, questionId: questionId, answerId: answerId, status:status })
     }
   }
 

@@ -19,6 +19,7 @@ export class TypeQuestionService {
 
   public getTypeQuestions() {
     return this.db.list('typeQuestion').valueChanges();
+
   }
 
   public updateTypeQuestion(typeQuestion) {
@@ -30,8 +31,9 @@ export class TypeQuestionService {
   }
 
   public getTypeQuestion(id) {
-    return this.db.object('typeQuestion/' + id);
 
+
+    return this.db.object('typeQuestion/' + id);
   }
 
 

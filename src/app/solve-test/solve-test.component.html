@@ -19,7 +19,7 @@
           <ng-container>
             <mat-radio-group class="example-radio-group" >
               <div *ngFor="let answer of answers | async">
-                <mat-radio-button class="example-radio-button" [value]="answer.id" *ngIf="question.id == answer.questionId" (click)="setAnswer(question.id,answer.id)">
+                <mat-radio-button class="example-radio-button" [value]="answer.id" *ngIf="question.id == answer.questionId" (click)="setAnswer(question.id,answer.id, answer.status)">
                   {{answer.answer}}
                 </mat-radio-button>
               </div>
