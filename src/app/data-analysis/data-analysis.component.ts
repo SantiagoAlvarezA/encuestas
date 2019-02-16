@@ -56,9 +56,7 @@ export class DataAnalysisComponent implements OnInit {
   }
 
   dataAnalysis(id) {
-    console.log(this.analysisService.setAnalysisByTest(id), ' ret front');
-    this.data = this.analysisService.result;
+    this.data = this.analysisService.setAnalysisByTest(id);
     console.log(this.data, ' front');
-    // this.analysisService.result = [];
   }
 }

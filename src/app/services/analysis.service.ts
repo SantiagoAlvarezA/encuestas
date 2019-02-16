@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { async } from '@angular/core/testing';
 
 
 @Injectable({
@@ -8,14 +9,13 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 })
 export class AnalysisService {
   data: any = {};
-  result: Array<any> = [];
   constructor(private db: AngularFireDatabase) { }
 
 
 
   public setAnalysisByTest(testId = 0) {
     var db = this.db.database;
-    this.result = [];
+    var result = [];
 
     db.ref('typeQuestion').orderByChild('testId').equalTo(testId).on('child_added', theme => {
       db.ref('question').orderByChild('themeId').equalTo(theme.val().id).on('child_added', question => {
@@ -29,10 +29,10 @@ export class AnalysisService {
               incorrectas++;
             }
           });
-          this.result.push({ 'correctas': correctas, 'incorrectas': incorrectas, 'question': question.val().question });
+          result.push({ 'correctas': correctas, 'incorrectas': incorrectas, 'question': question.val().question });
         });
       });
     });
-    // return this.result;
+    return result;
   }
 }
