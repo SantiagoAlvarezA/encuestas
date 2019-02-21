@@ -3,6 +3,7 @@ import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { TestService } from '../services/test.service';
 import { AnalysisService } from '../services/analysis.service';
+import { EditTestService } from '../services/edit-test.service';
 
 @Component({
   selector: 'app-test',
@@ -20,7 +21,7 @@ export class TestComponent implements OnInit {
   tes: any;
   rol: boolean;
 
-  constructor(private login: LoginService, private router: Router, private testServise: TestService, private analysisService:AnalysisService) {
+  constructor(private login: LoginService, private router: Router, private testServise: TestService, private analysisService: AnalysisService, private editTestService:EditTestService) {
     login.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
         this.isAuthenticated = true;
@@ -54,12 +55,9 @@ export class TestComponent implements OnInit {
   }
 
   public getTest(test) {
-    this.testServise.data = test;
+    this.editTestService.data = test;
+    this.router.navigate(['edit-test']);
 
-    // this.testServise.getTest(id).valueChanges().subscribe(test => {
-    //   this.testServise.data = test;
-    this.router.navigate(['/test/update']);
-    // });
 
   }
 
@@ -69,17 +67,17 @@ export class TestComponent implements OnInit {
   }
 
 
-  setComment(test){
+  setComment(test) {
     this.testServise.data = test;
     this.router.navigate(['/comments']);
   }
 
- solveTest(test){
+  solveTest(test) {
     this.testServise.data = test;
     this.router.navigate(['/solve']);
   }
 
-  setDataAnalysis(test:any){
+  setDataAnalysis(test: any) {
     this.analysisService.data = test;
     this.router.navigate(['/data-analysis']);
   }

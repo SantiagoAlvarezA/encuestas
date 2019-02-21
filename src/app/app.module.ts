@@ -53,6 +53,7 @@ import { Page404nofoundComponent } from './page404nofound/page404nofound.compone
 import { CommentsComponent } from './comments/comments.component';
 import { SolveTestComponent } from './solve-test/solve-test.component';
 import { DataAnalysisComponent } from './data-analysis/data-analysis.component';
+import { EditTestComponent } from './edit-test/edit-test.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'info', component: InformationComponent },
   { path: 'test', component: TestComponent },
+  { path: 'edit-test', component: EditTestComponent },
   { path: 'games', component: GamesComponent },
   // { path: 'gamesList/:id_juego', component: GamesCatComponent },
   { path: 'register/:rol', component: RegisterComponent },
@@ -89,7 +91,8 @@ const appRoutes: Routes = [
     Page404nofoundComponent,
     CommentsComponent,
     SolveTestComponent,
-    DataAnalysisComponent
+    DataAnalysisComponent,
+    EditTestComponent
   ],
 
   imports: [

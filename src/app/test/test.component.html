@@ -2,7 +2,7 @@
 
   <!-- lista las encuestas existentes -->
   <ng-container *ngFor="let test of tests | async">
-    
+
     <ng-container *ngIf="rol">
       <ng-container *ngIf="test.userId == user.id">
         <div class="col-sm-4 col-md-3 col-lg-3 p-1 d-flex ">
@@ -14,10 +14,10 @@
 
 
             <div class="border-top">
-                <fa-icon icon="poll" class="m-2 float-right icon" (click)="setDataAnalysis(test)"> </fa-icon>
-              <!-- <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test)"></fa-icon> -->
+              <fa-icon icon="poll" class="m-2 float-right icon" (click)="setDataAnalysis(test)"> </fa-icon>
+              <fa-icon icon="pen" class="m-2 float-right icon" (click)="getTest(test)"></fa-icon>
               <fa-icon icon="comment-alt" class="m-2 float-right icon" (click)="setComment(test)"></fa-icon>
-              </div>
+            </div>
           </div>
         </div>
 
@@ -31,10 +31,10 @@
 
           <p class="font-weight-light mb-auto mt-auto">{{test.description}}</p>
           <div class="border-top ">
-            
+
             <fa-icon icon="comment-alt" class="m-2 float-right icon" (click)="setComment(test)"></fa-icon>
             <fa-icon icon="question" class="m-2 float-right icon" (click)="solveTest(test)"></fa-icon>
-            </div>
+          </div>
         </div>
       </div>
 

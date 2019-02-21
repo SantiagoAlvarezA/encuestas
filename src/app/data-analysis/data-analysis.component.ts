@@ -14,23 +14,21 @@ export class DataAnalysisComponent implements OnInit {
   user: any = {};
   isAuthenticated: boolean = false;
 
-  data: any = [];
+  data: any = null;
 
   constructor(private authentication: LoginService, private router: Router, private analysisService: AnalysisService) {
-
+    this.test = this.analysisService.data;
+    // this.analysisService.setAnalysisByTest(this.analysisService.data.id);
+    this.data = this.analysisService.setAnalysisByTest(this.analysisService.data.id);
+    console.log(this.data, ' front');
+    this.analysisService.data = {};
 
 
 
     authentication.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
 
-        this.test = this.analysisService.data;
 
-        // this.data = this.analysisService.getAnalysisByTest(this.analysisService.data.id);
-
-        this.dataAnalysis(this.analysisService.data.id)
-
-        this.analysisService.data = {};
 
         this.isAuthenticated = true;
         let id: string = this.authentication.getUser().currentUser.uid;
@@ -53,10 +51,7 @@ export class DataAnalysisComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
-  dataAnalysis(id) {
-    this.data = this.analysisService.setAnalysisByTest(id);
-    console.log(this.data, ' front');
-  }
 }
