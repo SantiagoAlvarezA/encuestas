@@ -68,7 +68,5 @@ export class DataAnalysisComponent implements OnInit {
   dataByGroups(){
     this.byTest = false;
     this.byGroup = !this.byGroup;
-    
-
   }
 }
