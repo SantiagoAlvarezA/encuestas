@@ -26,29 +26,44 @@
                 </div>
                 <div class="field">
                     <label>PRIMER NOMBRE</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.firstName" placeholder="Ingrese su primer nombre">
+                    <input type="text" class="form-control" [(ngModel)]="user.firstName"
+                        placeholder="Ingrese su primer nombre">
                 </div>
                 <div class="field">
                     <label>SEGUNDO NOMBRE</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.secondName" placeholder="Ingrese su segundo nombre">
+                    <input type="text" class="form-control" [(ngModel)]="user.secondName"
+                        placeholder="Ingrese su segundo nombre">
                 </div>
                 <div class="field">
                     <label>PRIMER APELLIDO</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.firstSurname" placeholder="Ingrese su primer nombre">
+                    <input type="text" class="form-control" [(ngModel)]="user.firstSurname"
+                        placeholder="Ingrese su primer nombre">
                 </div>
                 <div class="field">
                     <label>SEGUNDO APELLIDO</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.secondSurname" placeholder="Ingrese su segundo nombre">
+                    <input type="text" class="form-control" [(ngModel)]="user.secondSurname"
+                        placeholder="Ingrese su segundo nombre">
                 </div>
+
+                <div class="field" *ngIf="rol">
+                    <label for="exampleFormControlSelect1">GRUPO</label>
+                    <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="user.group" required>
+                        <option *ngFor="let group of group">{{group}}</option>
+                    </select>
+                </div>
+
                 <div class="field">
                     <label>CONTRASEÑA</label>
                     <p class="control has-icons-left">
-                        <input type="password" class="input" [(ngModel)]="login.password" placeholder="Ingrese su contraseña">
+                        <input type="password" class="input" placeholder="Ingrese su contraseña"
+                            [(ngModel)]="login.password">
                         <span class="icon is-small is-left">
                             <i class="fa fa-lock"></i>
                         </span>
                     </p>
                 </div>
+
+
             </div>
         </div>
 
