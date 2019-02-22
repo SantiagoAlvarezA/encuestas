@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { GROUP } from '../group-model';
+import {PROGRAM} from '../program-model';
 
 @Component({
   selector: 'app-register',
@@ -15,19 +17,11 @@ export class RegisterComponent implements OnInit {
 
   rol: boolean = false;
   isAuthenticated: boolean = true;
+  group = GROUP;
+  program = PROGRAM;
 
-  group: Array<any> = [
-    '2019A', '2019B',
-    '2020A', '2020B',
-    '2021A', '2021B',
-    '2022A', '2022B',
-    '2023A', '2023B',
-    '2024A', '2024B',
-    '2025A', '2025B',
-    '2026A', '2026B',
-    '2027A', '2027B',
-    '2028A', '2028B'
-  ];
+
+
 
   constructor(private authentication: LoginService, private router: Router, private route: ActivatedRoute) {
     authentication.isAuthenticated().subscribe((result) => {

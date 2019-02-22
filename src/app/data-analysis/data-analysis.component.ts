@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnalysisService } from '../services/analysis.service';
 import { LoginService } from '../services/login.service';
+import { GROUP } from '../group-model';
+import { PROGRAM } from '../program-model';
 
 @Component({
   selector: 'app-data-analysis',
@@ -13,13 +15,16 @@ export class DataAnalysisComponent implements OnInit {
   test: any = {};
   user: any = {};
   isAuthenticated: boolean = false;
+  group = GROUP;
+  program = PROGRAM;
 
   data: any = null;
+  byTest:boolean = false;
 
   constructor(private authentication: LoginService, private router: Router, private analysisService: AnalysisService) {
     this.test = this.analysisService.data;
-    // this.analysisService.setAnalysisByTest(this.analysisService.data.id);
-    this.data = this.analysisService.setAnalysisByTest(this.analysisService.data.id);
+    this.analysisService.setAnalysisByTest(this.analysisService.data.id);
+
     console.log(this.data, ' front');
     this.analysisService.data = {};
 
@@ -51,7 +56,11 @@ export class DataAnalysisComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
+  }
+  dataByTest() {
+    this.byTest = true;
+    this.data = this.analysisService.setAnalysisByTest(this.test.id);
   }
 
 }

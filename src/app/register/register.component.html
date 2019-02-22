@@ -45,13 +45,21 @@
                         placeholder="Ingrese su segundo nombre">
                 </div>
 
-                <div class="field" *ngIf="rol">
-                    <label for="exampleFormControlSelect1">GRUPO</label>
-                    <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="user.group" required>
-                        <option *ngFor="let group of group">{{group}}</option>
-                    </select>
-                </div>
+                <div class="row" *ngIf="rol">
+                    <div class="field col-4">
+                        <label for="exampleFormControlSelect1">GRUPO</label>
+                        <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="user.group" required>
+                            <option *ngFor="let group of group">{{group}}</option>
+                        </select>
+                    </div>
 
+                    <div class="field col-8">
+                        <label for="exampleFormControlSelect1">PROGRAMA</label>
+                        <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="user.program" required>
+                            <option *ngFor="let program of program">{{program}}</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="field">
                     <label>CONTRASEÑA</label>
                     <p class="control has-icons-left">

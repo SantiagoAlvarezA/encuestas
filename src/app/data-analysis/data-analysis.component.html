@@ -1,11 +1,16 @@
 <div class="bg-light p-2">
 
-  <table class="table table-hover m-1 table-bordered p-1">
+  <div class="p-3">
+
+    <button class="btn btn-primary-lg" (click) = "dataByTest()">Datos por encuesta</button>
+  </div>
+
+
+  <table class="table table-hover m-1 table-bordered p-2" *ngIf="byTest">
     <caption>{{test.title}} <br>
-    <small>{{test.description}}</small></caption>
+      <small>{{test.description}}</small></caption>
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">PREGUNTA</th>
         <th scope="col">ESTUDIANTES QUE RESPONDIERON CORRECTAMENTE</th>
         <th scope="col">ESTUDIANTES QUE RESPONDIERON INCORRECTAMENTE</th>
@@ -13,11 +18,28 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of data ">
-        <th scope="row" ></th>
+        <!-- <th scope="row"></th> -->
         <td>¿ {{data.question}} ?.</td>
         <td>{{data.correctas}}</td>
         <td>{{data.incorrectas}}</td>
       </tr>
     </tbody>
   </table>
+
+  <hr>
+  <div class="row">
+    <div class="field col-4">
+      <label for="exampleFormControlSelect1">GRUPO</label>
+      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="user.group" required>
+        <option *ngFor="let group of group">{{group}}</option>
+      </select>
+    </div>
+
+    <div class="field col-8">
+      <label for="exampleFormControlSelect1">PROGRAMA</label>
+      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="user.program" required>
+        <option *ngFor="let program of program">{{program}}</option>
+      </select>
+    </div>
+  </div>
 </div>
