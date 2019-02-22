@@ -20,6 +20,7 @@ export class DataAnalysisComponent implements OnInit {
 
   data: any = null;
   byTest:boolean = false;
+  byGroup:boolean = false;
 
   constructor(private authentication: LoginService, private router: Router, private analysisService: AnalysisService) {
     this.test = this.analysisService.data;
@@ -59,8 +60,15 @@ export class DataAnalysisComponent implements OnInit {
 
   }
   dataByTest() {
-    this.byTest = true;
+    this.byGroup = false;
+    this.byTest = !this.byTest;
     this.data = this.analysisService.setAnalysisByTest(this.test.id);
   }
 
+  dataByGroups(){
+    this.byTest = false;
+    this.byGroup = !this.byGroup;
+    
+
+  }
 }
