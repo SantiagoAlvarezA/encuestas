@@ -66,9 +66,9 @@ const appRoutes: Routes = [
   // { path: 'gamesList/:id_juego', component: GamesCatComponent },
   { path: 'register/:rol', component: RegisterComponent },
   { path: 'test/:action', component: NewTestComponent },
-  { path: 'comments', component: CommentsComponent },  
-  { path: 'solve', component: SolveTestComponent },  
-  { path: 'data-analysis', component: DataAnalysisComponent },  
+  { path: 'comments', component: CommentsComponent },
+  { path: 'solve', component: SolveTestComponent },
+  { path: 'data-analysis', component: DataAnalysisComponent },
   { path: '**', component: Page404nofoundComponent },
 ];
 
@@ -97,8 +97,8 @@ const appRoutes: Routes = [
 
   imports: [
     BrowserModule,
-    FontAwesomeModule, //import  FontAwesomeModule paquete de iconos
-    RouterModule.forRoot(appRoutes),
+    FontAwesomeModule,//import  FontAwesomeModule paquete de iconos
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     FormsModule,
 
 
