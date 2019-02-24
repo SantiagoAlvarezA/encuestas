@@ -55,6 +55,8 @@ import { SolveTestComponent } from './solve-test/solve-test.component';
 import { DataAnalysisComponent } from './data-analysis/data-analysis.component';
 import { EditTestComponent } from './edit-test/edit-test.component';
 
+import { ChartsModule } from 'ng2-charts/ng2-charts';//libreria para graficos
+
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -109,7 +111,10 @@ const appRoutes: Routes = [
 
     //angular material
     AngularMaterial,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+    //libreria para graficos estadisticos
+    ChartsModule
 
   ],
   providers: [LoginService, TestService],
