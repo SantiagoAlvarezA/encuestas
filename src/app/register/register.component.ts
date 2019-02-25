@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GROUP } from '../group-model';
-import {PROGRAM} from '../program-model';
+import { PROGRAM } from '../program-model';
 
 @Component({
   selector: 'app-register',
@@ -46,8 +46,13 @@ export class RegisterComponent implements OnInit {
 
   public register() {
     //pendiente para validaciones
-    this.user.email = this.login.email;
-    this.authentication.register(this.login.email, this.login.password, this.user);
-
+    if (this.rol) {
+      this.user.email = this.login.email;
+      this.user.group_program = this.user.group+'_'+this.user.program;
+      this.authentication.register(this.login.email, this.login.password, this.user);
+    } else {
+      this.user.email = this.login.email;
+      this.authentication.register(this.login.email, this.login.password, this.user);
+    }
   }
 }

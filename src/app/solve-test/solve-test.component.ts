@@ -74,9 +74,9 @@ export class SolveTestComponent implements OnInit {
     });
 
     if (exist) {
-      this.resultList.splice(position, 1, { id: Date.now(), userId: this.userId, questionId: questionId, answerId: answerId, status:status });
+      this.resultList.splice(position, 1, { id: Date.now(), userId: this.userId, questionId: questionId, student_question: this.userId + '_' + questionId, answerId: answerId, status: status });
     } else {
-      this.resultList.push({ id: Date.now(), userId: this.userId, questionId: questionId, answerId: answerId, status:status })
+      this.resultList.push({ id: Date.now(), userId: this.userId, questionId: questionId, student_question: this.userId + '_' + questionId, answerId: answerId, status: status })
     }
   }
 

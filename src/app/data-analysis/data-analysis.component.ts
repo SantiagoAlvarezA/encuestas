@@ -59,25 +59,40 @@ export class DataAnalysisComponent implements OnInit {
     this.byTest = false;
     this.byGroup = !this.byGroup;
     var db = this.db.database;
-    let students = db.ref('users').orderByChild('group').equalTo(this.selectedGroup);
-    students.on('child_added', students => {
-      console.log(students.child('program'));
-      if (students.val().program == this.selectedProgram)
-        console.log(students.val(), ' estudiantes');
-    });
-
+    var good: number = 0;
+    var bad: number = 0;
     db.ref('typeQuestion').orderByChild('testId').equalTo(this.test.id).on('child_added', theme => {
       db.ref('question').orderByChild('themeId').equalTo(theme.val().id).on('child_added', question => {
-        db.ref('results').orderByChild('questionId').equalTo(question.val().id).once('value', snapshot => {
 
-          // console.log(theme.val());
-          // console.log(question.val());
-          // console.log(snapshot.val());
+        db.ref('users').orderByChild('group_program').equalTo(this.selectedGroup + '_' + this.selectedProgram).on('child_added', student => {
+          db.ref('results').orderByChild('student_question').equalTo(student.val().id + '_' + question.val().id).once('value', snapshot => {
+
+            // console.log(theme.val());
+            console.log(question.val());
+            console.log(snapshot.val());
+
+            snapshot.forEach(result => {
+              if (result.val().status) {
+                good++;
+              } else {
+                bad++;
+              }
+            });
+
+            console.log('buenas', good);
+            console.log('malas', bad);
 
 
+
+          });
         });
+
+
+
       });
     });
+
+
 
   }
 
