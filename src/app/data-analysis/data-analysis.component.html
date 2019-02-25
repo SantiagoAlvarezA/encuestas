@@ -32,21 +32,21 @@
   <div class="row" *ngIf="byGroup">
     <div class="field col-4">
       <label for="exampleFormControlSelect1">GRUPO</label>
-      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="user.group" required>
+      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectedGroup" required>
         <option *ngFor="let group of group">{{group}}</option>
       </select>
     </div>
 
     <div class="field col-8">
       <label for="exampleFormControlSelect1">PROGRAMA</label>
-      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="user.program" required>
+      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectedProgram" required>
         <option *ngFor="let program of program">{{program}}</option>
       </select>
     </div>
   </div>
 
   <hr>
-  <div>
+  <!-- <div>
     <div style="display: block">
       <canvas baseChart
               [datasets]="barChartData"
@@ -58,6 +58,6 @@
               (chartClick)="chartClicked($event)">
       </canvas>
     </div>
-  </div>
+  </div> -->
 
 </div>
