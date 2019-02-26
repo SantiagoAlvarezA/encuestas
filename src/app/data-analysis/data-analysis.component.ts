@@ -61,39 +61,30 @@ export class DataAnalysisComponent implements OnInit {
     var db = this.db.database;
     var good: number = 0;
     var bad: number = 0;
-    db.ref('typeQuestion').orderByChild('testId').equalTo(this.test.id).on('child_added', theme => {
-      db.ref('question').orderByChild('themeId').equalTo(theme.val().id).on('child_added', question => {
+    db.ref('question').orderByChild('testId').equalTo(this.test.id).on('child_added', question => {
+      db.ref('users').orderByChild('group_program').equalTo(this.selectedGroup + '_' + this.selectedProgram).on('child_added', student => {
+        db.ref('results').orderByChild('student_question').equalTo(student.val().id + '_' + question.val().id).once('value', snapshot => {
 
-        db.ref('users').orderByChild('group_program').equalTo(this.selectedGroup + '_' + this.selectedProgram).on('child_added', student => {
-          db.ref('results').orderByChild('student_question').equalTo(student.val().id + '_' + question.val().id).once('value', snapshot => {
+          // console.log(theme.val());
+          console.log(question.val());
+          console.log(snapshot.val());
 
-            // console.log(theme.val());
-            console.log(question.val());
-            console.log(snapshot.val());
-
-            snapshot.forEach(result => {
-              if (result.val().status) {
-                good++;
-              } else {
-                bad++;
-              }
-            });
-
-            console.log('buenas', good);
-            console.log('malas', bad);
-
-
-
+          snapshot.forEach(result => {
+            if (result.val().status) {
+              good++;
+            } else {
+              bad++;
+            }
           });
+
+          console.log('buenas', good);
+          console.log('malas', bad);
+
+
+
         });
-
-
-
       });
     });
-
-
-
   }
 
 

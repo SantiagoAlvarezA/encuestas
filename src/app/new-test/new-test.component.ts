@@ -153,11 +153,12 @@ export class NewTestComponent implements OnInit {
     this.theme = [];
   }
 
-  saveQuestion(question: any, themeId: any) {
+  saveQuestion(question: any, themeId: any, testId: any) {
     this.questionList.push({
       question: question.question,
       id: Date.now(),
-      themeId: themeId
+      themeId: themeId,
+      testId: testId
     });
     this.question = [];
 
@@ -214,7 +215,7 @@ export class NewTestComponent implements OnInit {
     this.themeService.setTypeQuestion(this.themeList);
     this.questionService.setQuestion(this.questionList);
     this.answerService.setAnswer(this.answerList);
-    
+
     this.title = '';
     this.description = '';
 
