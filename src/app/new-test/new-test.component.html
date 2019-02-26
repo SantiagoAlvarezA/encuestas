@@ -1,141 +1,103 @@
 <div class="row font-weight-light">
   <div class="col-8 offset-2 shadow p-3 mb-5 bg-white">
-
     <mat-form-field class="example-full-width col-12">
       <input matInput placeholder="Título de la encuesta" [(ngModel)]="title">
     </mat-form-field>
-
     <mat-form-field class="example-full-width col-12">
       <textarea matInput placeholder="Descripción y objetivo de la encuesta" [(ngModel)]="description"></textarea>
     </mat-form-field>
-
-
-
     <a class="button is-primary is-fullwidth" (click)=" createTest(title,description)">Crear test</a>
-
-
-
-
-
     <mat-divider class="mt-3 mb-5"></mat-divider>
-
-
-
     <div *ngFor="let test of testList">
-
       <div class="shadow-lg p-3 mb-3 rounded bg-success ">
-
         <a class="close " aria-label="Close">
           <span class="text-light" aria-hidden="true" (click)="deleteTest(test)">&times;</span>
         </a>
-
         <div class="row p-1">
-
           <p class="col-sm-4 text-light">
             {{test.title}}
           </p>
           <div class="input-group col-sm-8">
-            <input type="text" class="form-control" placeholder="Tema" aria-label="Tema a evaluar" [(ngModel)]="theme.theme">
+            <input type="text" class="form-control" placeholder="Tema" aria-label="Tema a evaluar"
+              [(ngModel)]="theme.theme">
             <div class="input-group-append">
-              <button class="btn btn-outline-light " type="button" (click)="saveTheme(theme, test.id)">Crear tema</button>
+              <button class="btn btn-outline-light " type="button" (click)="saveTheme(theme, test.id)">Crear
+                tema</button>
             </div>
           </div>
-
         </div>
         <hr>
-
         <!-- listar los temas correspondientes a cada test -->
-
         <ng-container *ngFor="let theme of themeList">
           <div class="p-3 mb-3 rounded bg-info" *ngIf="theme.testId == test.id">
             <a class="close " aria-label="Close">
               <span class="text-light" aria-hidden="true" (click)="deleteTheme(theme)">&times;</span>
             </a>
-
             <div class="row">
-
               <div class="col-sm-4">
                 {{theme.theme}}
-
               </div>
               <div class="input-group col-sm-8">
-                <input type="text" class="form-control" placeholder="Pregunta" aria-label="Pregunta relacionada con el tema"
-                  [(ngModel)]="question.question">
+                <input type="text" class="form-control" placeholder="Pregunta"
+                  aria-label="Pregunta relacionada con el tema" [(ngModel)]="question.question">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-light " type="button" (click)="saveQuestion(question, theme.id, test.id)">Crear
+                  <button class="btn btn-outline-light " type="button"
+                    (click)="saveQuestion(question, theme.id, test.id)">Crear
                     pregunta</button>
                 </div>
               </div>
             </div>
             <hr>
-
             <ng-container *ngFor="let question of questionList">
               <div class="p-3 mb-3 rounded bg-dark text-light" *ngIf="question.themeId == theme.id">
                 <a class="close " aria-label="Close">
                   <span class="text-light" aria-hidden="true" (click)="deleteQuestion(question)">&times;</span>
                 </a>
-
                 <div class="row">
                   <div class="col-sm-4">
                     ¿ {{question.question}} ?.
                   </div>
                   <div class="input-group col-sm-8">
-                    <input type="text" class="form-control" placeholder="Respuesta" aria-label="Respuesta relacionada con el tema"
-                      [(ngModel)]="answer.answer">
+                    <input type="text" class="form-control" placeholder="Respuesta"
+                      aria-label="Respuesta relacionada con el tema" [(ngModel)]="answer.answer">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-light " type="button" (click)="saveAnswer(answer, question.id)">Crear
+                      <button class="btn btn-outline-light " type="button"
+                        (click)="saveAnswer(answer, question.id)">Crear
                         respuesta</button>
-
                     </div>
                   </div>
-
                 </div>
                 <hr>
                 <ng-container *ngFor="let answer of answerList">
                   <div class="input-group " *ngIf="answer.questionId == question.id">
-
-
-                    <div class="text-primary btn btn-lg  text-align-left" *ngIf="answer.status" (click)="status(answer)">
+                    <div class="text-primary btn btn-lg  text-align-left" *ngIf="answer.status"
+                      (click)="status(answer)">
                       <input type="radio" checked> {{answer.answer}}
                     </div>
-                    <div class="text-danger btn btn-lg  text-align-left" *ngIf="!answer.status" (click)="status(answer)">
+                    <div class="text-danger btn btn-lg  text-align-left" *ngIf="!answer.status"
+                      (click)="status(answer)">
                       <input type="radio"> {{answer.answer}}
                     </div>
-
-
                     <small class="text-danger btn ml-auto" (click)="deleteAnswer(answer)">Eliminar respuesta</small>
-
                   </div>
-
                 </ng-container>
-
               </div>
-
             </ng-container>
           </div>
-
         </ng-container>
-  
-
-
       </div>
-
-
     </div>
-
   </div>
   <mat-list>
     <mat-list-item>
-
       <button mat-mini-fab color="" class="m-1 " (click)="saveAll()">
         <fa-icon icon="{{icon}}"></fa-icon>
       </button>
     </mat-list-item>
-
     <mat-list-item>
       <button mat-mini-fab color="" class="m-1" (click)="close()">
         <fa-icon icon="times"></fa-icon>
       </button>
     </mat-list-item>
-
   </mat-list>
+</div>
