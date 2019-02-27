@@ -1,13 +1,24 @@
 <div class="card ">
     <!-- <img class="card-img-topn" src="https://www.viajejet.com/wp-content/viajes/una-laguna-unica-en-jamaica.jpg" alt="Card image"> -->
-    <div class="card-img-overlay  text-light d-flex bd-highlight">
-            <div class="mt-5">
-                      <h1 class="text-light">BIENVENIDO A ALGORITBUILD </h1>
-                      
-                      <h4 class="text-light col-10 ">Algoritbuild la herramienta que despertara la logica de la programacion atraves del juego  </h4>
-            </div>      
+    <ngb-carousel class="card-img-topn" *ngIf="images" [showNavigationArrows]="showNavigationArrows"
+        [showNavigationIndicators]="showNavigationIndicators">
+        <ng-template ngbSlide *ngFor="let image of images">
+            <img height="50%" width="100%" [src]="image" alt="Random slide">
 
-        <div class="ml-auto  mt-5 p-2 col-3 rounded bg-black bd-highlight align-self-start text-center" *ngIf="!isAuthenticated">
+        </ng-template>
+    </ngb-carousel>
+    <div class="card-img-overlay  text-light d-flex bd-highlight">
+        <div class="mt-5">
+            <h1 class="text-light">BIENVENIDO A ALGORITBUILD </h1>
+
+            <h4 class="text-light col-10 ">Algoritbuild la herramienta que despertara la logica de la programacion
+                atraves del juego </h4>
+
+
+            <hr>
+        </div>
+        <div class="ml-auto  mt-5 p-2 col-3 rounded bg-black bd-highlight align-self-start text-center"
+            *ngIf="!isAuthenticated">
 
             <h4 class="font-weight-light">Registrarte como</h4>
             <button class="p-1 btn btn-lg col-12 font-weight-light " routerLink="/register/teacher">
@@ -21,4 +32,5 @@
             </button>
         </div>
     </div>
+
 </div>

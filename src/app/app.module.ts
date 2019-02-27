@@ -56,6 +56,11 @@ import { DataAnalysisComponent } from './data-analysis/data-analysis.component';
 import { EditTestComponent } from './edit-test/edit-test.component';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';//libreria para graficos
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+// Importar HttpClientModule
+import {HttpClientModule} from '@angular/common/http';
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -94,7 +99,9 @@ const appRoutes: Routes = [
     CommentsComponent,
     SolveTestComponent,
     DataAnalysisComponent,
-    EditTestComponent
+    EditTestComponent,
+    
+    
   ],
 
   imports: [
@@ -114,7 +121,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
 
     //libreria para graficos estadisticos
-    ChartsModule
+    ChartsModule,
+    NgbModule,
+    
+    HttpClientModule
 
   ],
   providers: [LoginService, TestService],
