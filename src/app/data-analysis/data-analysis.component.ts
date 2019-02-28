@@ -42,6 +42,11 @@ export class DataAnalysisComponent implements OnInit {
         this.user = this.authentication.getUs(id).valueChanges().subscribe(user => {
           this.user = user;
         });
+        this.dataByTest().then(response => {
+          setTimeout(() => {
+            this.dataTest = response;
+          }, 2);
+        });
       } else {
         this.isAuthenticated = false;
       }
@@ -88,7 +93,7 @@ export class DataAnalysisComponent implements OnInit {
           });
         }).then(res => {
           dataByGroup.push({
-            studentId: student.val().id, name: student.val().firstName + ' ' + student.val().firstSurname, good: good, bad: bad
+            studentId: student.val().id, name: student.val().firstName + ' ' + student.val().firstSurname, good: good, bad: bad, average: (((good + bad) * good) / 100) * 100 + ' PUNTOS'
           });
           this.dataByGroup = this.removeDuplicates(dataByGroup, "studentId");
           this.tableByGroup = true;

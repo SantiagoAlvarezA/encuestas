@@ -24,11 +24,14 @@ export class LoginService {
 
     this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
       .then((response) => {
-        this.router.navigate(['/']);
+
         this.alert = [{
           type: 'success',
-          message: 'Bienvenido',
-        }]
+          message: 'Bienvenido'
+        }];
+        this.router.navigate(['/']);
+
+
       })
       .catch((error) => {
         this.alert = [{

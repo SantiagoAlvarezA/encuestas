@@ -1,7 +1,5 @@
 <div class="col-6 col-sm-6 offset-3 mt-5 font-weight-light">
-    <p *ngFor="let alert of alerts">
-        <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
-    </p>
+
     <div class="card border-0">
         <div class="card-header p-4 has-text-white has-background-black">
             <h2 class="m-auto">LOGIN</h2>
@@ -31,6 +29,9 @@
                         </span>
                     </p>
                 </div>
+                <p *ngFor="let alert of alerts">
+                    <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+                </p>
             </div>
         </div>
         <div class="card-footer has-background-black has-text-white">

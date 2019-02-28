@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   isAuthenticated: boolean = true;
 
 
-  alerts:any = [];
+  alerts: any = [];
 
 
   constructor(private authentication: LoginService, private router: Router) {
@@ -75,11 +75,16 @@ export class LoginComponent implements OnInit {
     this.authentication.signIn(this.login.email, this.login.password);
     setTimeout(() => {
       this.authentication.getMsg().then(alerts => {
-        this.alerts = alerts;        
+        this.alerts = alerts;
+
+        setTimeout(() => {
+          this.alerts = [];
+        }, 2000);
       });
     }, 2);
-
   }
+
+
 
 
 

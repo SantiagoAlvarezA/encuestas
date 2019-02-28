@@ -1,14 +1,17 @@
 <div class="bg-light p-5">
+  <div>
+    <h3>{{test.title}} <br>
+      <small>{{test.description}}</small>
+    </h3>
+  </div>
 
   <div>
     <button class="btn btn-primary btn-lg m-1" (click)="showByTest()">Datos por encuesta</button>
     <button class="btn btn-primary btn-lg m-1" (click)="showByGroups()">Datos por gupos</button>
   </div>
   <hr>
-  <table class="table table-hover m-1 table-bordered p-2" [hidden]="!byTest">
-    <caption>{{test.title}} <br>
-      <small>{{test.description}}</small></caption>
-    <thead>
+  <table class="table table-hover m-2 table-bordered p-2" [hidden]="!byTest">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">PREGUNTA</th>
         <th scope="col">ESTUDIANTES QUE RESPONDIERON CORRECTAMENTE</th>
@@ -17,7 +20,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of dataTest">
-        <td>¿ {{data.question}} ?.</td>
+        <td class="font-weight-bold">¿ {{data.question}} ?.</td>
         <td>{{data.correctas}}</td>
         <td>{{data.incorrectas}}</td>
       </tr>
@@ -44,21 +47,21 @@
       </div>
     </div>
     <hr>
-    <table class="table table-hover m-1 table-bordered p-2" [hidden]="!tableByGroup">
-      <caption>{{test.title}} <br>
-        <small>{{test.description}}</small></caption>
-      <thead>
+    <table class="table table-hover m-2 table-bordered p-2" [hidden]="!tableByGroup">
+      <thead class="thead-dark">
         <tr>
           <th scope="col">ESTUDIANTE</th>
           <th scope="col">TOTAL BUENAS</th>
           <th scope="col">TOTAL MALAS</th>
+          <th scope="col">PUNTAJE</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let dataByGroup of dataByGroup ">
-          <td>{{dataByGroup.name}}</td>
+          <td class="font-weight-bold">{{dataByGroup.name}}</td>
           <td>{{dataByGroup.good}}</td>
           <td>{{dataByGroup.bad}}</td>
+          <td>{{dataByGroup.average}}</td>
         </tr>
       </tbody>
     </table>
