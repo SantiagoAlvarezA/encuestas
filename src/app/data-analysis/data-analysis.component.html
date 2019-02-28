@@ -5,7 +5,7 @@
     <button class="btn btn-primary btn-lg m-1" (click)="showByGroups()">Datos por gupos</button>
   </div>
   <hr>
-  <table class="table table-hover m-1 table-bordered p-2" *ngIf="byTest">
+  <table class="table table-hover m-1 table-bordered p-2" [hidden]="!byTest">
     <caption>{{test.title}} <br>
       <small>{{test.description}}</small></caption>
     <thead>
@@ -23,7 +23,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="row" *ngIf="byGroup">
+  <div class="row" [hidden]="!byGroup">
     <div class="field col-4">
       <label for="exampleFormControlSelect1">GRUPO</label>
       <select class="form-control custom-select" id="exampleFormControlSelect1" (click)="dataByGroups()"
@@ -44,7 +44,7 @@
       </div>
     </div>
     <hr>
-    <table class="table table-hover m-1 table-bordered p-2" *ngIf="tableByGroup">
+    <table class="table table-hover m-1 table-bordered p-2" [hidden]="!tableByGroup">
       <caption>{{test.title}} <br>
         <small>{{test.description}}</small></caption>
       <thead>

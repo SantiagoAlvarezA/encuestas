@@ -9,6 +9,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class LoginService {
 
   data: any = {};
+  alert: any = null;
 
   constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase) {
     this.isAuthenticated();
@@ -20,16 +21,26 @@ export class LoginService {
 
   // Metodo para iniciar sesion
   public signIn = (email, password) => {
+
     this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
       .then((response) => {
         this.router.navigate(['/']);
+        this.alert = [{
+          type: 'success',
+          message: 'Bienvenido',
+        }]
       })
       .catch((error) => {
-        console.log(error);
-        console.log('El usuario no esta registrado.');
+        this.alert = [{
+          type: 'danger',
+          message: 'Usuario y/o contraseña incorrectos'
+        }];
       });
   }
 
+  async getMsg() {
+    return await this.alert;
+  }
   // Metodo para cerrar sesion
   public signOut() {
     this.angularFireAuth.auth.signOut();

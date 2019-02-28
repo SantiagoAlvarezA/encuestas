@@ -19,7 +19,7 @@ export class DataAnalysisComponent implements OnInit {
   group = GROUP;
   program = PROGRAM;
 
-  dataTest: Array<any> = [];
+  dataTest: Array<any> = null;
   byTest: boolean = false;
   byGroup: boolean = false;
   tableByGroup: boolean = false;
@@ -42,8 +42,6 @@ export class DataAnalysisComponent implements OnInit {
         this.user = this.authentication.getUs(id).valueChanges().subscribe(user => {
           this.user = user;
         });
-
-        this.dataByTest();
       } else {
         this.isAuthenticated = false;
       }
@@ -55,14 +53,20 @@ export class DataAnalysisComponent implements OnInit {
   ngOnInit() {
 
   }
+
   showByGroups() {
     this.byTest = false;
     this.byGroup = !this.byGroup;
   }
 
-  showByTest() {
+  async showByTest() {
     this.byGroup = false;
-    this.dataByTest();
+    await this.dataByTest().then(response => {
+      setTimeout(() => {
+        this.dataTest = response;
+        this.byTest = true;
+      }, 2);
+    });
   }
 
   dataByGroups() {
@@ -107,9 +111,9 @@ export class DataAnalysisComponent implements OnInit {
   }
 
 
-  dataByTest() {
+  async dataByTest() {
     this.byTest = false;
-    this.dataTest = [];
+    var dataTest: Array<any> = [];
     var db = this.db.database;
     db.ref('question').orderByChild('testId').equalTo(this.test.id).on('child_added', question => {
       db.ref('results').orderByChild('questionId').equalTo(question.val().id).once('value', snapshot => {
@@ -122,13 +126,12 @@ export class DataAnalysisComponent implements OnInit {
             incorrectas++;
           }
         });
-        this.dataTest.push(
+        dataTest.push(
           { correctas: correctas, incorrectas: incorrectas, question: question.val().question }
         );
-        this.byTest = true;
       });
     });
-
+    return await dataTest;
   }
 
 
