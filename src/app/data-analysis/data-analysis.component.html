@@ -29,7 +29,7 @@
   <div class="row" [hidden]="!byGroup">
     <div class="field col-4">
       <label for="exampleFormControlSelect1">GRUPO</label>
-      <select class="form-control custom-select" id="exampleFormControlSelect1" (click)="dataByGroups()"
+      <select class="form-control custom-select" id="exampleFormControlSelect1"
         [(ngModel)]="selectedGroup" required>
         <option *ngFor="let group of group">{{group}}</option>
       </select>
@@ -38,12 +38,12 @@
       <label for="exampleFormControlSelect1">PROGRAMA</label>
       <div class="input-group mb-3">
         <select class="form-control custom-select" id="exampleFormControlSelect1" [(ngModel)]="selectedProgram"
-          (click)="dataByGroups()" required>
+           required>
           <option *ngFor="let program of program">{{program}}</option>
         </select>
-        <!-- <div class="input-group-prepend ">
+        <div class="input-group-prepend ">
           <span class="input-group-text btn" (click)="dataByGroups()">Mostrar</span>
-        </div> -->
+        </div>
       </div>
     </div>
     <hr>
