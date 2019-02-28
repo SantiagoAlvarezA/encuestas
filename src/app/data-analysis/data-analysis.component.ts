@@ -5,6 +5,8 @@ import { GROUP } from '../group-model';
 import { PROGRAM } from '../program-model';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { TestService } from '../services/test.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-data-analysis',
@@ -32,6 +34,14 @@ export class DataAnalysisComponent implements OnInit {
 
   dataByGroup: Array<any> = [];
 
+  dataByGroupObservable = new Observable(observer => {
+    setInterval(() => observer.next(this.dataByGroup))
+  });
+
+  dataTestObservable = new Observable(observer => {
+    setInterval(() => observer.next(this.dataTest))
+  });
+
   constructor(private authentication: LoginService, private router: Router, private db: AngularFireDatabase, private testService: TestService) {
     this.test = this.testService.data;
     this.testService.data = {};
@@ -42,11 +52,11 @@ export class DataAnalysisComponent implements OnInit {
         this.user = this.authentication.getUs(id).valueChanges().subscribe(user => {
           this.user = user;
         });
-        this.dataByTest().then(response => {
-          setTimeout(() => {
-            this.dataTest = response;
-          }, 2);
-        });
+        // this.dataByTest().then(response => {
+        //   setTimeout(() => {
+        //     this.dataTest = response;
+        //   }, 2);
+        // });
       } else {
         this.isAuthenticated = false;
       }

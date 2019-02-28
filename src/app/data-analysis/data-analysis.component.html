@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of dataTest">
+      <tr *ngFor="let data of dataTestObservable | async">
         <td class="font-weight-bold">¿ {{data.question}} ?.</td>
         <td>{{data.correctas}}</td>
         <td>{{data.incorrectas}}</td>
@@ -57,7 +57,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let dataByGroup of dataByGroup ">
+        <tr *ngFor="let dataByGroup of dataByGroupObservable | async">
           <td class="font-weight-bold">{{dataByGroup.name}}</td>
           <td>{{dataByGroup.good}}</td>
           <td>{{dataByGroup.bad}}</td>
