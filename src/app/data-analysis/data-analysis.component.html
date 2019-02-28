@@ -1,13 +1,10 @@
 <div class="bg-light p-5">
 
-  <div  >
-
-    <button class="btn btn-primary btn-lg m-1" (click)="dataByTest()">Datos por encuesta</button>
-    <button class="btn btn-primary btn-lg m-1" (click)="dataByGroups()">Datos por gupos</button>
-
+  <div>
+    <button class="btn btn-primary btn-lg m-1" (click)="showByTest()">Datos por encuesta</button>
+    <button class="btn btn-primary btn-lg m-1" (click)="showByGroups()">Datos por gupos</button>
   </div>
   <hr>
-
   <table class="table table-hover m-1 table-bordered p-2" *ngIf="byTest">
     <caption>{{test.title}} <br>
       <small>{{test.description}}</small></caption>
@@ -19,45 +16,51 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of data ">
-        <!-- <th scope="row"></th> -->
+      <tr *ngFor="let data of dataTest">
         <td>¿ {{data.question}} ?.</td>
         <td>{{data.correctas}}</td>
         <td>{{data.incorrectas}}</td>
       </tr>
     </tbody>
   </table>
-
-
   <div class="row" *ngIf="byGroup">
     <div class="field col-4">
       <label for="exampleFormControlSelect1">GRUPO</label>
-      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectedGroup" required>
+      <select class="form-control custom-select" id="exampleFormControlSelect1" (click)="dataByGroups()"
+        [(ngModel)]="selectedGroup" required>
         <option *ngFor="let group of group">{{group}}</option>
       </select>
     </div>
-
-    <div class="field col-8">
+    <div class=" col-8">
       <label for="exampleFormControlSelect1">PROGRAMA</label>
-      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectedProgram" required>
-        <option *ngFor="let program of program">{{program}}</option>
-      </select>
+      <div class="input-group mb-3">
+        <select class="form-control custom-select" id="exampleFormControlSelect1" [(ngModel)]="selectedProgram"
+          (click)="dataByGroups()" required>
+          <option *ngFor="let program of program">{{program}}</option>
+        </select>
+        <!-- <div class="input-group-prepend ">
+          <span class="input-group-text btn" (click)="dataByGroups()">Mostrar</span>
+        </div> -->
+      </div>
     </div>
+    <hr>
+    <table class="table table-hover m-1 table-bordered p-2" *ngIf="tableByGroup">
+      <caption>{{test.title}} <br>
+        <small>{{test.description}}</small></caption>
+      <thead>
+        <tr>
+          <th scope="col">ESTUDIANTE</th>
+          <th scope="col">TOTAL BUENAS</th>
+          <th scope="col">TOTAL MALAS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dataByGroup of dataByGroup ">
+          <td>{{dataByGroup.name}}</td>
+          <td>{{dataByGroup.good}}</td>
+          <td>{{dataByGroup.bad}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <hr>
-  <!-- <div>
-    <div style="display: block">
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)">
-      </canvas>
-    </div>
-  </div> -->
-
 </div>

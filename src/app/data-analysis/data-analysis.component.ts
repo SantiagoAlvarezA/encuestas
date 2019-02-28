@@ -19,15 +19,18 @@ export class DataAnalysisComponent implements OnInit {
   group = GROUP;
   program = PROGRAM;
 
-  data: Array<any> = [];
+  dataTest: Array<any> = [];
   byTest: boolean = false;
   byGroup: boolean = false;
+  tableByGroup: boolean = false;
 
   correctas: Array<any> = [];
   incorrectas: Array<any> = [];
   preguntas: any[] = [];
   selectedGroup: string = '';
   selectedProgram: string = '';
+
+  dataByGroup: Array<any> = [];
 
   constructor(private authentication: LoginService, private router: Router, private db: AngularFireDatabase, private testService: TestService) {
     this.test = this.testService.data;
@@ -39,6 +42,8 @@ export class DataAnalysisComponent implements OnInit {
         this.user = this.authentication.getUs(id).valueChanges().subscribe(user => {
           this.user = user;
         });
+
+        this.dataByTest();
       } else {
         this.isAuthenticated = false;
       }
@@ -50,25 +55,26 @@ export class DataAnalysisComponent implements OnInit {
   ngOnInit() {
 
   }
-  imprimeGroup() {
-    console.log(this.selectedGroup, ' gruuporrrrrr');
+  showByGroups() {
+    this.byTest = false;
+    this.byGroup = !this.byGroup;
+  }
 
+  showByTest() {
+    this.byGroup = false;
+    this.dataByTest();
   }
 
   dataByGroups() {
-    this.byTest = false;
-    this.byGroup = !this.byGroup;
+    this.tableByGroup = false;
+    this.dataByGroup = [];
     var db = this.db.database;
-    var good: number = 0;
-    var bad: number = 0;
-    db.ref('question').orderByChild('testId').equalTo(this.test.id).on('child_added', question => {
-      db.ref('users').orderByChild('group_program').equalTo(this.selectedGroup + '_' + this.selectedProgram).on('child_added', student => {
+    var dataByGroup: Array<any> = [];
+    db.ref('users').orderByChild('group_program').equalTo(this.selectedGroup + '_' + this.selectedProgram).on('child_added', student => {
+      var good: number = 0;
+      var bad: number = 0;
+      db.ref('question').orderByChild('testId').equalTo(this.test.id).on('child_added', question => {
         db.ref('results').orderByChild('student_question').equalTo(student.val().id + '_' + question.val().id).once('value', snapshot => {
-
-          // console.log(theme.val());
-          console.log(question.val());
-          console.log(snapshot.val());
-
           snapshot.forEach(result => {
             if (result.val().status) {
               good++;
@@ -76,42 +82,53 @@ export class DataAnalysisComponent implements OnInit {
               bad++;
             }
           });
-
-          console.log('buenas', good);
-          console.log('malas', bad);
-
-
-
+        }).then(res => {
+          dataByGroup.push({
+            studentId: student.val().id, name: student.val().firstName + ' ' + student.val().firstSurname, good: good, bad: bad
+          });
+          this.dataByGroup = this.removeDuplicates(dataByGroup, "studentId");
+          this.tableByGroup = true;
         });
       });
     });
+
+  }
+
+  removeDuplicates(originalArray, prop) {
+    var newArray = [];
+    var lookupObject = {};
+    for (var i in originalArray) {
+      lookupObject[originalArray[i][prop]] = originalArray[i];
+    }
+    for (i in lookupObject) {
+      newArray.push(lookupObject[i]);
+    }
+    return newArray;
   }
 
 
   dataByTest() {
-    this.data = [];
-    this.byGroup = false;
-    this.byTest = !this.byTest;
+    this.byTest = false;
+    this.dataTest = [];
     var db = this.db.database;
-    db.ref('typeQuestion').orderByChild('testId').equalTo(this.test.id).on('child_added', theme => {
-      db.ref('question').orderByChild('themeId').equalTo(theme.val().id).on('child_added', question => {
-        db.ref('results').orderByChild('questionId').equalTo(question.val().id).once('value', snapshot => {
-          var correctas = 0;
-          var incorrectas = 0;
-          snapshot.forEach(i => {
-            if (i.val().status) {
-              correctas++;
-            } else {
-              incorrectas++;
-            }
-          });
-          this.data.push(
-            { correctas: correctas, incorrectas: incorrectas, question: question.val().question }
-          );
-
+    db.ref('question').orderByChild('testId').equalTo(this.test.id).on('child_added', question => {
+      db.ref('results').orderByChild('questionId').equalTo(question.val().id).once('value', snapshot => {
+        var correctas = 0;
+        var incorrectas = 0;
+        snapshot.forEach(i => {
+          if (i.val().status) {
+            correctas++;
+          } else {
+            incorrectas++;
+          }
         });
+        this.dataTest.push(
+          { correctas: correctas, incorrectas: incorrectas, question: question.val().question }
+        );
+        this.byTest = true;
       });
     });
+
   }
 
 
