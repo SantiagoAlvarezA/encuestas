@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   isAuthenticated: boolean = true;
 
 
-  alerts:any = null;
+  alerts:any = [];
 
 
   constructor(private authentication: LoginService, private router: Router) {
@@ -71,6 +71,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   async signIn() {
+    this.alerts = [];
     this.authentication.signIn(this.login.email, this.login.password);
     setTimeout(() => {
       this.authentication.getMsg().then(alerts => {
