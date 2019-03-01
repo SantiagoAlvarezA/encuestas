@@ -3,6 +3,7 @@ import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { TestService } from '../services/test.service';
 import { EditTestService } from '../services/edit-test.service';
+import { DataAnalisisService } from '../services/data-analisis.service';
 
 @Component({
   selector: 'app-test',
@@ -20,7 +21,7 @@ export class TestComponent implements OnInit {
   tes: any;
   rol: boolean;
 
-  constructor(private login: LoginService, private router: Router, private testServise: TestService, private editTestService: EditTestService) {
+  constructor(private login: LoginService, private router: Router, private testServise: TestService, private editTestService: EditTestService,  private dataAnalisisService: DataAnalisisService) {
     login.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
         this.isAuthenticated = true;
@@ -77,7 +78,7 @@ export class TestComponent implements OnInit {
   }
 
   setDataAnalysis(test: any) {
-    this.testServise.data = test;
+    this.dataAnalisisService.data = test;
     this.router.navigate(['/data-analysis']);
   }
 

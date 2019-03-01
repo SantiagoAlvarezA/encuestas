@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { GROUP } from '../group-model';
 import { PROGRAM } from '../program-model';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { TestService } from '../services/test.service';
-import { Observable } from 'rxjs';
+import { DataAnalisisService } from '../services/data-analisis.service';
 
 
 @Component({
@@ -21,30 +18,17 @@ export class DataAnalysisComponent implements OnInit {
   group = GROUP;
   program = PROGRAM;
 
-  dataTest: Array<any> = null;
   byTest: boolean = false;
   byGroup: boolean = false;
   tableByGroup: boolean = false;
 
-  correctas: Array<any> = [];
-  incorrectas: Array<any> = [];
-  preguntas: any[] = [];
   selectedGroup: string = '';
   selectedProgram: string = '';
 
-  dataByGroup: Array<any> = [];
+  dataGroup = null;
+  dataTest = null;
 
-  dataByGroupObservable = new Observable(observer => {
-    setInterval(() => observer.next(this.dataByGroup))
-  });
-
-  dataTestObservable = new Observable(observer => {
-    setInterval(() => observer.next(this.dataTest))
-  });
-
-  constructor(private authentication: LoginService, private router: Router, private db: AngularFireDatabase, private testService: TestService) {
-    this.test = this.testService.data;
-    this.testService.data = {};
+  constructor(private authentication: LoginService, private dataAnalisisService: DataAnalisisService) {
     authentication.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
         this.isAuthenticated = true;
@@ -52,11 +36,8 @@ export class DataAnalysisComponent implements OnInit {
         this.user = this.authentication.getUs(id).valueChanges().subscribe(user => {
           this.user = user;
         });
-        // this.dataByTest().then(response => {
-        //   setTimeout(() => {
-        //     this.dataTest = response;
-        //   }, 2);
-        // });
+        this.test = this.dataAnalisisService.data;
+        this.dataAnalisisService.data = {};
       } else {
         this.isAuthenticated = false;
       }
@@ -69,93 +50,27 @@ export class DataAnalysisComponent implements OnInit {
 
   }
 
+
+  showByTest() {
+    this.byGroup = false;
+    this.byTest = true;
+    this.dataAnalisisService.dataByTest(this.test.id).then(data => {
+      this.dataTest = data;
+    });
+  }
+
   showByGroups() {
     this.byTest = false;
     this.byGroup = !this.byGroup;
   }
 
-  async showByTest() {
-    this.byGroup = false;
-    await this.dataByTest().then(response => {
-      setTimeout(() => {
-        this.dataTest = response;
-        this.byTest = true;
-      }, 2);
-    });
-  }
-
   dataByGroups() {
-    this.tableByGroup = false;
-    this.dataByGroup = [];
-    var db = this.db.database;
-    var dataByGroup: Array<any> = [];
-    db.ref('users').orderByChild('group_program').equalTo(this.selectedGroup + '_' + this.selectedProgram).on('child_added', student => {
-      var good: number = 0;
-      var bad: number = 0;
-      db.ref('question').orderByChild('testId').equalTo(this.test.id).on('child_added', question => {
-        db.ref('results').orderByChild('student_question').equalTo(student.val().id + '_' + question.val().id).once('value', snapshot => {
-          snapshot.forEach(result => {
-            if (result.val().status) {
-              good++;
-            } else {
-              bad++;
-            }
-          });
-        }).then(res => {
-          dataByGroup.push({
-            studentId: student.val().id, name: student.val().firstName + ' ' + student.val().firstSurname, good: good, bad: bad, average: (((good + bad) * good) / 100) * 100 + ' PUNTOS'
-          });
-          this.dataByGroup = this.removeDuplicates(dataByGroup, "studentId");
-          this.tableByGroup = true;
-        });
-      });
-    });
+    this.dataAnalisisService.dataByGroups(this.test.id, this.selectedGroup, this.selectedProgram).then(data => {
+      this.dataGroup = data;
+      this.tableByGroup = true;
+    })
 
   }
-
-  removeDuplicates(originalArray, prop) {
-    var newArray = [];
-    var lookupObject = {};
-    for (var i in originalArray) {
-      lookupObject[originalArray[i][prop]] = originalArray[i];
-    }
-    for (i in lookupObject) {
-      newArray.push(lookupObject[i]);
-    }
-    return newArray;
-  }
-
-
-  async dataByTest() {
-    this.byTest = false;
-    var dataTest: Array<any> = [];
-    var db = this.db.database;
-    db.ref('question').orderByChild('testId').equalTo(this.test.id).on('child_added', question => {
-      db.ref('results').orderByChild('questionId').equalTo(question.val().id).once('value', snapshot => {
-        var correctas = 0;
-        var incorrectas = 0;
-        snapshot.forEach(i => {
-          if (i.val().status) {
-            correctas++;
-          } else {
-            incorrectas++;
-          }
-        });
-        dataTest.push(
-          { correctas: correctas, incorrectas: incorrectas, question: question.val().question }
-        );
-      });
-    });
-    return await dataTest;
-  }
-
-
-
-
-
-
-
-
 
 
 
@@ -163,10 +78,6 @@ export class DataAnalysisComponent implements OnInit {
   //   scaleShowVerticalLines: true,
   //   responsive: true
   // };
-
-
-
-
 
   // public barChartLabels: string[] = this.preguntas;
   // public barChartType: string = 'bar';

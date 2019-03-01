@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of dataTestObservable | async">
+      <tr *ngFor="let data of dataTest | async">
         <td class="font-weight-bold">¿ {{data.question}} ?.</td>
         <td>{{data.correctas}}</td>
         <td>{{data.incorrectas}}</td>
@@ -27,22 +27,23 @@
     </tbody>
   </table>
   <div class="row" [hidden]="!byGroup">
-    <div class="field col-4">
+    <div class="field col-md-4 col-sm-12">
       <label for="exampleFormControlSelect1">GRUPO</label>
-      <select class="form-control custom-select" id="exampleFormControlSelect1"
-        [(ngModel)]="selectedGroup" required>
+      <select class="form-control custom-select" id="exampleFormControlSelect1" [(ngModel)]="selectedGroup" required>
         <option *ngFor="let group of group">{{group}}</option>
       </select>
     </div>
-    <div class=" col-8">
+    <div class=" col-md-8 col-sm-12">
       <label for="exampleFormControlSelect1">PROGRAMA</label>
       <div class="input-group mb-3">
         <select class="form-control custom-select" id="exampleFormControlSelect1" [(ngModel)]="selectedProgram"
-           required>
+          required>
           <option *ngFor="let program of program">{{program}}</option>
         </select>
         <div class="input-group-prepend ">
-          <span class="input-group-text btn" (click)="dataByGroups()">Mostrar</span>
+          <span class="input-group-text btn  bg-primary btn-primary text-white" (click)="dataByGroups()">
+            <fa-icon icon="search"></fa-icon>
+          </span>
         </div>
       </div>
     </div>
@@ -57,7 +58,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let dataByGroup of dataByGroupObservable | async">
+        <tr *ngFor="let dataByGroup of dataGroup | async">
           <td class="font-weight-bold">{{dataByGroup.name}}</td>
           <td>{{dataByGroup.good}}</td>
           <td>{{dataByGroup.bad}}</td>
