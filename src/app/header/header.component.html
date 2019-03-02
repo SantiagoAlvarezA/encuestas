@@ -2,41 +2,53 @@
 
   <fa-icon icon="brain" class="mr-2"></fa-icon>
   <small class="font-weight-light">ALGORITBUILD</small>
-  
+
 </div>
-<div class="font-weight-light pl-5 pr-5  shadow sticky-top bg-black">
-  <div class="container pl-5 pr-5 pt-2 pb-2">
+<nav class="navbar sticky-top navbar-expand-lg shadow sticky-top bg-black font-weight-light text-light">
+  <a class="navbar-brand  text-light" routerLink="">
+    <fa-icon icon="brain" class="mr-2"></fa-icon>
+    <small>ALGORITBUILD</small>
+  </a>
+  <a class="navbar-toggler collapsed  btn" (click)="toggleState()">
+    <fa-icon icon="{{iconColapse}}" class="mr-2"></fa-icon>
+  </a>
 
-    <a routerLink="" class=" text-light">
-      <fa-icon icon="brain" class="mr-2"></fa-icon>
-      <small>ALGORITBUILD</small>
-    </a>
+  <div class="navbar-collapse  text-light" [ngClass]="{ 'collapse': isCollapse }">
+    <ul class="navbar-nav mr-auto">
 
-    <a class=" text-light   pl-3 pr-3" routerLink="about">
-      <small>Sobre nosotros</small>
-      <!-- <fa-icon icon="users"></fa-icon> -->
-    </a>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="text-light   pl-3 pr-3" routerLink="about">
+          <small>Sobre nosotros</small>
+        </a>
+      </li>
 
-    <a class=" text-light  pl-3 pr-3" routerLink="/info">
-      <small>Informate</small>
-      <!-- <fa-icon icon="info-circle"></fa-icon> -->
-    </a>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="text-light  pl-3 pr-3" routerLink="/info">
+          <small>Informate</small>
+        </a>
+      </li>
 
-    <a class="text-light   pl-3 pr-3" routerLink="/test" *ngIf="isAuthenticated">
-      <small>Encuesta</small>
-      <!-- <fa-icon icon="poll"></fa-icon> -->
-    </a>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="text-light pl-3 pr-3" routerLink="/test" *ngIf="isAuthenticated">
+          <small>Encuesta</small>
+        </a>
+      </li>
 
-    <a class=" text-light  pl-3 pr-3" routerLink="/games" *ngIf="isAuthenticated">
-      <small>Juegos</small>
-      <!-- <fa-icon icon="gamepad"></fa-icon> -->
-    </a>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="text-light pl-3 pr-3" routerLink="/games" *ngIf="isAuthenticated">
+          <small>Juegos</small>
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" >
+      <li routerLinkActive="active" class="nav-item">
 
-    <div class=" text-light  float-right pl-4">
-      <fa-icon icon="{{iconUser}}" class="ml-2" *ngIf="isAuthenticated"></fa-icon>
-      <small *ngIf="isAuthenticated" class="pr-1 hover"> {{user.firstName }} {{user.firstSurname}} </small>
-      <fa-icon icon="{{icon}}" class="ml-2" (click)="action()"></fa-icon>
-    </div>
+        <fa-icon icon="{{iconUser}}" class="ml-2" *ngIf="isAuthenticated"></fa-icon>
+        <small *ngIf="isAuthenticated" class="pr-1 hover"> {{user.firstName }} {{user.firstSurname}} </small>
 
+        <fa-icon class="btn" icon="{{icon}}" class="ml-2" (click)="action()"></fa-icon>
+
+      </li>
+    </ul>
   </div>
-</div>
+</nav>

@@ -15,6 +15,19 @@ export class HeaderComponent implements OnInit {
   icon: string = 'power-off';
   iconUser: string = 'user-graduate';
   user: any = {};
+  isCollapse = true;
+  isCollaps = true;
+  toggleState() {
+    let foo = this.isCollapse;
+    this.isCollaps = !this.isCollaps;
+
+    this.isCollapse = foo === false ? true : false;
+  this.iconColapse = (this.isCollaps) ? 'angle-double-down' : 'angle-double-up';
+
+  }
+
+  iconColapse = (this.isCollaps) ? 'angle-double-down' : 'angle-double-up';
+
   constructor(private authentication: LoginService, private router: Router) {
     //this.user = authentication.getUid();
     authentication.isAuthenticated().subscribe((result) => {

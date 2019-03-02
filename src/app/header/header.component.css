@@ -1,8 +1,11 @@
-@import 'bulma/css/bulma.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
 .header-jumbotron {
     padding: 10% 25px;
     text-align: center;
     text-anchor: middle;
     font: 3em sans-serif;
     color: aliceblue;
+}
+a:link{
+    text-decoration: none;
 }
