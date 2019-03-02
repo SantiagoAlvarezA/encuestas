@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,12 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class LoginService {
 
   data: any = {};
-  alert: any = null;
-
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+  });
   constructor(private angularFireAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase) {
     this.isAuthenticated();
   }
@@ -24,30 +29,30 @@ export class LoginService {
 
     this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
       .then((response) => {
-
-        this.alert = [{
+        this.Toast.fire({
           type: 'success',
-          message: 'Bienvenido'
-        }];
+          title: 'Bienvenido'
+        })
         this.router.navigate(['/']);
-
 
       })
       .catch((error) => {
-        this.alert = [{
-          type: 'danger',
-          message: 'Usuario y/o contraseña incorrectos'
-        }];
+        this.Toast.fire({
+          type: 'error',
+          title: 'Usuario y/o contraseña incorrectos'
+        });
       });
   }
 
-  async getMsg() {
-    return await this.alert;
-  }
+
   // Metodo para cerrar sesion
   public signOut() {
     this.angularFireAuth.auth.signOut();
     this.router.navigate(['']);
+    this.Toast.fire({
+      type: 'success',
+      title: 'Se a cerrado sesión con exito'
+    })
   }
 
   // Metodo para registrar usuario
@@ -57,10 +62,17 @@ export class LoginService {
       .then((response) => {
         user.id = response.user.uid;
         this.db.database.ref('users/' + user.id).set(user);
+        this.Toast.fire({
+          type: 'success',
+          title: 'El usuario se a registrado con exito'
+        })
         this.router.navigate(['/']);
       })
       .catch((error) => {
-        console.log(error);
+        this.Toast.fire({
+          type: 'error',
+          title: 'Se a presentado un error al momento de registrar el usuario'
+        })
       });
   }
 
