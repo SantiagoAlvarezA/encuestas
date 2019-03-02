@@ -4,11 +4,11 @@
         [showNavigationIndicators]="showNavigationIndicators">
         <ng-template ngbSlide *ngFor="let image of images">
             <img height="50%" width="100%" [src]="image" alt="Random slide">
-
         </ng-template>
     </ngb-carousel>
-    <div class="card-img-overlay  text-light d-flex bd-highlight">
-        <div class="mt-5">
+
+    <div class="card-img-overlay  text-light bd-highlight row">
+        <div class="mt-5 col-md-8 col-sm-12">
             <h1 class="text-light">BIENVENIDO A ALGORITBUILD </h1>
 
             <h4 class="text-light">Algoritbuild la herramienta que despertara la logica de la programacion
@@ -18,19 +18,22 @@
             <hr>
         </div>
 
-        <div class="ml-auto  mt-5 p-2 col-md-3 col-sm-8 rounded bg-black bd-highlight align-self-start text-center"
-            *ngIf="!isAuthenticated">
+        <div class="col-md-4 col-sm-12">
 
-            <h4 class="font-weight-light">Registrarte como</h4>
-            <button class="p-1 btn btn-lg col-12 font-weight-light " routerLink="/register/teacher">
 
-                Docente
-                <fa-icon icon="chalkboard-teacher" class="ml-3"></fa-icon>
-            </button>
-            <button class="mt-2 p-1 btn btn-lg col-12 font-weight-light" routerLink="/register/student">
-                Estudiante
-                <fa-icon icon="user-graduate" class="ml-3"></fa-icon>
-            </button>
+            <div class="rounded bg-black bd-highlighttext-center p-2 mt-sm-2 mt-md-5" *ngIf="!isAuthenticated">
+
+                <h4 class="font-weight-light">Registrarte como</h4>
+                <button class="p-1 btn btn-lg col-12 font-weight-light " routerLink="/register/teacher">
+
+                    Docente
+                    <fa-icon icon="chalkboard-teacher" class="ml-3"></fa-icon>
+                </button>
+                <button class="mt-2 p-1 btn btn-lg col-12 font-weight-light" routerLink="/register/student">
+                    Estudiante
+                    <fa-icon icon="user-graduate" class="ml-3"></fa-icon>
+                </button>
+            </div>
         </div>
     </div>
 
