@@ -56,10 +56,21 @@ import { DataAnalysisComponent } from './data-analysis/data-analysis.component';
 import { EditTestComponent } from './edit-test/edit-test.component';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';//libreria para graficos
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 // Importar HttpClientModule
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { FusionChartsModule } from 'angular-fusioncharts';
+
+// Load FusionCharts
+import * as FusionCharts from 'fusioncharts';
+// Load Charts module
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+// Load fusion theme
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+
+// Add dependencies to FusionChartsModule
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme)
 
 
 const appRoutes: Routes = [
@@ -100,8 +111,8 @@ const appRoutes: Routes = [
     SolveTestComponent,
     DataAnalysisComponent,
     EditTestComponent,
-    
-    
+
+
   ],
 
   imports: [
@@ -123,8 +134,9 @@ const appRoutes: Routes = [
     //libreria para graficos estadisticos
     ChartsModule,
     NgbModule,
-    
-    HttpClientModule
+
+    HttpClientModule,
+    FusionChartsModule // Include in imports
 
   ],
   providers: [LoginService, TestService],

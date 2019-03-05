@@ -28,7 +28,10 @@ export class DataAnalysisComponent implements OnInit {
   dataGroup = null;
   dataTest = null;
 
+
   currentJustify = 'justified';
+
+
   constructor(private authentication: LoginService, private dataAnalisisService: DataAnalisisService) {
     authentication.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
@@ -46,12 +49,9 @@ export class DataAnalysisComponent implements OnInit {
     }, (error) => {
       this.isAuthenticated = false;
     });
-
-
-
-
-
   }
+
+
 
   ngOnInit() {
 
@@ -59,10 +59,34 @@ export class DataAnalysisComponent implements OnInit {
 
 
   showByTest() {
-    this.dataAnalisisService.dataByTest(this.test.id).then(data => {
-      this.dataTest = data;
-      this.byTest = true;
-    });
+    this.dataAnalisisService.dataByTest(this.test.id)
+      .then(data => {
+        this.dataTest = data;
+        this.byTest = true;
+      }).catch(err => {
+
+        console.log(err);
+
+      });
+  }
+
+  dataSource(data) {
+    let dataSource = {
+      "chart": {
+        "caption": '¿ ' + data.question + ' ?',
+        "showValues": "0",
+        "showPercentInTooltip": "1",
+        "theme": "fusion"
+      },
+      "data": [{
+        "label": "Correctas",
+        "value": data.correctas
+      }, {
+        "label": "Incorrectas",
+        "value": data.incorrectas
+      }]
+    };
+    return dataSource;
   }
 
   dataByGroups() {
