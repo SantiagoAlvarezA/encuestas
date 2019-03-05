@@ -51,7 +51,11 @@ export class DataAnalisisService {
           });
         }).then(() => {
           dataByGroup.push({
-            studentId: student.val().id, name: student.val().firstName + ' ' + student.val().firstSurname, good: good, bad: bad, average: (((good + bad) * good) / 100) * 100 + ' PUNTOS DE 100 POSIBLES'
+            studentId: student.val().id,
+            name: student.val().firstName + ' ' + student.val().firstSurname,
+            good: good, bad: bad,
+            average: (((good + bad) * good) / 100) * 100
+
           });
         });
       });
@@ -62,7 +66,6 @@ export class DataAnalisisService {
 
 
   }
-
 
   removeDuplicates(originalArray, prop) {
     var newArray = [];

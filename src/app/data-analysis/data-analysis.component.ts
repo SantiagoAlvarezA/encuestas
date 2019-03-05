@@ -51,12 +51,7 @@ export class DataAnalysisComponent implements OnInit {
     });
   }
 
-
-
-  ngOnInit() {
-
-  }
-
+  ngOnInit() { }
 
   showByTest() {
     this.dataAnalisisService.dataByTest(this.test.id)
@@ -95,32 +90,4 @@ export class DataAnalysisComponent implements OnInit {
       this.tableByGroup = true;
     });
   }
-
-
-
-  // public barChartOptions: any = {
-  //   scaleShowVerticalLines: true,
-  //   responsive: true
-  // };
-
-  // public barChartLabels: string[] = this.preguntas;
-  // public barChartType: string = 'bar';
-  // public barChartLegend: boolean = true;
-
-  // public barChartData: any[] = [
-  //   { data: [2,3,0], label: 'correctas' },
-  //   { data: [4,6,0], label: 'incorrectas' },
-  // ];
-
-
-  // // events
-  // public chartClicked(e: any): void {
-  //   console.log(e, 'eeeeeeeeeeeee');
-  // }
-
-  // public chartHovered(e: any): void {
-  //   console.log(e);
-  // }
-
-
 }
