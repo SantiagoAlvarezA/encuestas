@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { EditTestService } from '../services/edit-test.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit-test',
@@ -12,12 +13,13 @@ export class EditTestComponent implements OnInit {
   login: any = {};
   isAuthenticated: boolean = true;
   test: any = null;
+  data: any = null;
   constructor(private authentication: LoginService, private router: Router, private editTestService: EditTestService) {
     this.authentication.isAuthenticated().subscribe((result) => {
       if (result && result.uid) {
         this.isAuthenticated = true;
         this.test = this.editTestService.data;
-        
+        this.getDataEdit();
         this.editTestService.data = {};
         this.editTestService.getDataForEditTest(this.test.id);
       } else {
@@ -30,6 +32,32 @@ export class EditTestComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  themes: any = null;
+  questions: any = [];
+  answers: any = [];
+
+  getDataEdit() {
+
+    this.editTestService.getDataForEditTest(this.test.id).then(data => {
+      this.themes = new Observable(observer => {
+        setInterval(() => observer.next(data.theme))
+      });
+
+      this.questions = new Observable(observer => {
+        setInterval(() => observer.next(data.question))
+      });
+      this.answers = new Observable(observer => {
+        setInterval(() => observer.next(data.answer))
+      });
+
+
+      console.log(data.answer);
+
+    });
+
+
+
   }
 
 }
