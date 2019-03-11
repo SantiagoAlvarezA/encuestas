@@ -5,24 +5,26 @@
 
 
 <ng-container *ngFor="let game of juegos">
-  <div class="card col-md-12 bg-info">
-    <ng-container *ngIf="game.id_juego == id_juego">
-      <h1 class="font-weight-light">{{game.name}}</h1>
-      <div class="card bg-dark ">
-        <div class="img">
 
-            <img src="{{game.img}}" (click)="navegateToGame(game.gameUrl)" width="200px" height="200px">
+  <ng-container *ngIf="game.id_juego == id_juego">
+    <div class="card m-2 col-md-12 bg-info">
+      <h1 class="font-weight-light">{{game.name}}</h1>
+
+      <div class="m-3 border-rounded bg-dark row ">
+        <div class="img col col-sm-12 col-md-4">
+
+          <img src="{{game.img}}" (click)="navegateToGame(game.gameUrl)" width="200px" height="200px">
 
         </div>
 
-        <div class="detail">
-          <h6>
-            <span class="text text-white">{{game.descripcion}}</span>
-          </h6>
-
+        <div class="detail col col-sm-12 col-md-8">
+          <h4 class="text-justify">
+            <span class="text text-white text-justify">{{game.descripcion}}</span>
+          </h4>
+          
         </div>
       </div>
+    </div>
+  </ng-container>
 
-    </ng-container>
-  </div>
 </ng-container>
