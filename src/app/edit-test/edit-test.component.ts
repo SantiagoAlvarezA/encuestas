@@ -40,19 +40,27 @@ export class EditTestComponent implements OnInit {
   getDataEdit() {
 
     this.editTestService.getDataForEditTest(this.test.id).then(data => {
-      this.themes = new Observable(observer => {
-        setInterval(() => observer.next(data.theme))
-      });
-
-      this.questions = new Observable(observer => {
-        setInterval(() => observer.next(data.question))
-      });
-      this.answers = new Observable(observer => {
-        setInterval(() => observer.next(data.answer))
-      });
+      data.subscribe(data => {
 
 
-      console.log(data.answer);
+        console.log(data["answer"], ' front');
+        
+
+        this.themes = new Observable(observer => {
+          setInterval(() => observer.next(data["theme"]))
+        });
+
+        // console.log(data, ' front');
+        this.questions = new Observable(observer => {
+          setInterval(() => observer.next(data["question"]))
+        });
+        this.answers = new Observable(observer => {
+          setInterval(() => observer.next(data["answer"]))
+        });
+      })
+
+
+
 
     });
 

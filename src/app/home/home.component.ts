@@ -10,7 +10,7 @@ import { positionElements } from '@ng-bootstrap/ng-bootstrap/util/positioning';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isAuthenticated: boolean = false;
+  isAuthenticated = false;
   showNavigationArrows = false;
   showNavigationIndicators = false;
   arrayImg: Array<string> = [
